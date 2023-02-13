@@ -1,0 +1,22 @@
+.bg-blue {
+    background: #2827ec;
+}
+
+.bg-red{
+    background: #e9483f;
+}
+
+.bg-gray{
+    background: #f4f4f4;
+}
+
+.text-blue{
+    color: #2827ec;
+}
+.text-red{
+    color: #e9483f;
+}
+
+.text-gray{
+    color: #f4f4f4;
+}
