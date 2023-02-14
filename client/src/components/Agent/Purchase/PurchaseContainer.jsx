@@ -67,6 +67,12 @@ const PurchaseContainer = () => {
     // }
     return (   
     <div className="container my-5 ">
+        <dev className="text-center"><h1>Purchases</h1></dev>
+        <ul className="pagination justify-content-center">
+            <li className="page-item rounded-circle" ><p className={state===0?"page-link active":"page-link"} onClick={()=>setState(0)}>Choose Packages</p></li>
+            <li className="page-item rounded-circle"><p className={state===1?"page-link active":"page-link"} onClick={()=>setState(1)}>Submit Plan</p></li>
+            <li className="page-item rounded-circle"><p className={state===2?"page-link active":"page-link"} onClick={()=>setState(2)}>Summary</p></li>
+        </ul>
        {pages[state]}
        <div className="my-3 d-flex justify-content-between">
             {state>=1&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev-=1)} >Previous</button>}

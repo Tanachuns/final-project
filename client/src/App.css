@@ -20,3 +20,11 @@
 .text-gray{
     color: #f4f4f4;
 }
+
+.text-white {
+    color: #fff !important;
+}
+
+nav a :hover{
+    color: #e9483f;
+}

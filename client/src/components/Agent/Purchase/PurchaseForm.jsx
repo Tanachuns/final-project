@@ -12,7 +12,7 @@ const PurchaseForm = (props) => {
                 <option value="child">Child</option>
                 <option value="others">Others</option>
             </select>
-            <label for="title">Title</label>
+            <label for="relation">Relation</label>
         </div>
         <div className="form-floating mb-3">
             <select className="form-select" id="beneficiary_title" aria-label="Title" name="beneficiary_title" defaultValue={props.data.beneficiary_title} required onChange={(e)=>props.fromHandler(e)}>
