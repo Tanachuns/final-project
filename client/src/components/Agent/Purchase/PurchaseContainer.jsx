@@ -2,13 +2,11 @@ import PurchaseForm from "./PurchaseForm";
 import PurchaseTable from "./PurchaseTable";
 import PurchaseSum from "./PurchaseSum"
 import React from 'react';
-import axios from "axios";
-
 
 const PurchaseContainer = () => {
     const [state,setState] = React.useState(0)
     
-    const [customer,setCustomer] = React.useState([
+    const [customer,setCustomer] = React.useState(
         {
         title:"",
         firstname:"",
@@ -24,18 +22,36 @@ const PurchaseContainer = () => {
         address_amphur:"",
         address_tumbon:"",
         address_province:"",
-        address_zipcode:""
+        address_zipcode:"",
+        beneficiary:false
 }
-    ])
+    )
 
     const pages = [
-        <PurchaseTable/>,
+        <PurchaseTable fromHandler={(e)=>fromHandler(e)}/>,
         <PurchaseForm data={customer} fromHandler={(e)=>fromHandler(e)}/>,
-        <PurchaseSum data={customer}/>,
+        <PurchaseSum data={customer} />,
     ]
 
     const fromHandler = (e)=>{
         setCustomer(prev=>{
+            console.log(e.target.value)
+            if(e.target.name ==="beneficiary"){
+               if(e.target.checked===false){
+                return {
+                    ...prev,
+                    [e.target.name]:e.target.checked,
+                    beneficiary_firstname:"",
+                    beneficiary_lastname:"",
+                    beneficiary_relation:"",
+                    beneficiary_title:""
+                }
+               }
+                return {
+                ...prev,
+                [e.target.name]:e.target.checked
+            }
+            }
             return {
                 ...prev,
                 [e.target.name]:e.target.value
@@ -49,13 +65,13 @@ const PurchaseContainer = () => {
     //         console.log(res)
     //     })
     // }
-    console.log(customer)
     return (   
     <div className="container my-5 ">
        {pages[state]}
        <div className="my-3 d-flex justify-content-between">
-            {state>=1&&<button className="btn btn-success" type="button" onClick={()=>setState(prev=>prev-=1)} >Prevous</button>}
-            {state<2&&<button className="btn btn-success" type="button" onClick={()=>setState(prev=>prev+=1)} >Next</button>}
+            {state>=1&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev-=1)} >Previous</button>}
+            {state<2&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev+=1)} >Next</button>}
+            {state===2&&<button className="btn btn-success" type="button" onClick={()=>setState(prev=>prev+=1)} >Submit</button>}
         </div>
     </div> 
     );

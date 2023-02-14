@@ -1,18 +1,13 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import HomeContainer from "./components/Home/HomeContainer";
-import PurchaseContainer from "./components/Purchase/PurchaseContainer";
-import NavbarContainer from "./components/Navbar/NavbarContainer";
+import PurchaseContainer from "./components/Agent/Purchase/PurchaseContainer";
 
 function App() {
   return (
     <>
-      <nav>
-        <NavbarContainer />
-      </nav>
+      <nav></nav>
       <main>
         <Routes>
-          <Route path="/" element={<HomeContainer />} />
           <Route path="/purchases" element={<PurchaseContainer />} />
         </Routes>
       </main>
