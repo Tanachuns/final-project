@@ -15,6 +15,13 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        $registers = Customer::skip(0)->take(10)->get();
+        $count = Customer::count();
+        return response()->json([
+            "data"=>$registers,
+            "count"=>$count
+        ]
+        ,200);
     }
 
     /**
@@ -36,6 +43,7 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         Customer::create($request->all());
+
         return response()->json([
             "Status"=>"Success"
         ],200);
@@ -50,7 +58,11 @@ class RegisterController extends Controller
      */
     public function show($id)
     {
-        //
+        $registers = Customer::find($id);
+        return response()->json([
+            "data"=>$registers,
+        ]
+        ,200);
     }
 
     /**
@@ -61,7 +73,7 @@ class RegisterController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -73,7 +85,18 @@ class RegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $registers = Customer::find($id);
+        if($registers){
+            $registers->update($request->all());
+            return response()->json([
+            "data"=>$registers,
+        ]
+        ,200);
+        }
+        return response()->json([
+            "data"=>null,
+        ]
+        ,400);
     }
 
     /**

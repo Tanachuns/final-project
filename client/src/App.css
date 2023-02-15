@@ -10,6 +10,8 @@
     background: #f4f4f4;
 }
 
+
+
 .text-blue{
     color: #2827ec;
 }
@@ -25,6 +27,15 @@
     color: #fff !important;
 }
 
-nav a :hover{
+
+
+a{
+    color: white;
+}
+a:hover{
     color: #e9483f;
+}
+
+main{
+    min-height: 100vh;
 }
