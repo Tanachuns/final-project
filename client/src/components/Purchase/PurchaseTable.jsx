@@ -45,7 +45,7 @@ const PurchaseTable = (props) => {
   <tbody>
     
     
-    {planRecords}
+    {plan.length>0?planRecords:<p>Plan not found</p>}
     
   </tbody>
 </table>

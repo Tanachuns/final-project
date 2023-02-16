@@ -33,6 +33,7 @@ const PurchaseContainer = () => {
         <PurchaseSum data={customer} />,
     ]
 
+
     const fromHandler = (e)=>{
         setCustomer(prev=>{
             console.log(e.target.value)
@@ -60,13 +61,9 @@ const PurchaseContainer = () => {
     }
 
 
-    // const clickHandler=()=>{
-    //     axios.post('http://127.0.0.1:8000/api/register',customer).then(res=>{
-    //         console.log(res)
-    //     })
-    // }
     return (   
     <div className="container my-5 ">
+    
         <dev className="text-center"><h1>Purchases</h1></dev>
         <ul className="pagination justify-content-center">
             <li className="page-item rounded-circle" ><p className={state===0?"page-link  active":"page-link"} onClick={()=>setState(0)}>Choose Plan</p></li>
@@ -74,10 +71,10 @@ const PurchaseContainer = () => {
             <li className="page-item rounded-circle"><p className={state===2?"page-link active":"page-link"} onClick={()=>setState(2)}>Summary</p></li>
         </ul>
        {pages[state]}
-       <div className="my-3 d-flex justify-content-between">
+       <div className="my-3 mx-auto d-flex justify-content-between col-lg-4 col-md-6 col-sm-12">
             {state>=1&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev-=1)} >Previous</button>}
             {state<2&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev+=1)} >Next</button>}
-            {state===2&&<button className="btn btn-success" type="button" onClick={()=>setState(prev=>prev+=1)} >Submit</button>}
+            {state===2&&<button className="btn btn-success" type="button" onClick={()=>{alert("mock up submit")}} >Submit</button>}
         </div>
     </div> 
     );

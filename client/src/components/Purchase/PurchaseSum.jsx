@@ -22,7 +22,7 @@ const PurchaseTable = (props) => {
             <br />
             </tbody>
     </>)
-    return ( <>
+    return ( <div className="col-lg-6 col-md-6 col-sm-12 m-auto">
     <h3>Customer Details</h3>
     <table className="table">
         <tbody>
@@ -100,7 +100,7 @@ const PurchaseTable = (props) => {
             </tr>
         </tbody>
     </table>
-    </> );
+    </div> );
 }
  
 export default PurchaseTable;

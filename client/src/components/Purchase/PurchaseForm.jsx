@@ -36,10 +36,10 @@ const PurchaseForm = (props) => {
 
 
     return ( <>
-    <form className="m-auto" id="contactForm" style={{minWidth:"50%"}} >
+    <form className="m-auto col-lg-4 col-md-6 col-sm-12" id="contactForm" style={{minWidth:"50%"}} >
         <h3>Customer Details</h3>
        
-        <div className="form-floating mb-3">
+        <div className="form-floating mb-3 ">
             <select className="form-select" id="title" aria-label="Title" name="title" defaultValue={props.data.title} required onChange={(e)=>props.fromHandler(e)}>
                 <option selected disabled value={""}>Title</option>
                 <option value="Mr.">Mr.</option>

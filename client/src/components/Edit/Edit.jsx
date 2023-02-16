@@ -14,20 +14,28 @@ const Edit = () => {
         })
     },[id])
 
-    const clickHandler = ()=>{
+    const editHandler = ()=>{
         axios.put("http://127.0.0.1:8000/api/register/"+id,data).then((res)=>{
-            return redirect("/purchases")
         })
-
     }
+   
 
     console.log(id);
 
     return ( <div className="container text-center my-5">
         <form action="">
         <label htmlFor="id">ID: </label>
+       
         <input type="text" name="number" id="id"  onChange={(e)=>setId(e.target.value)} defaultValue={id}/>
-        <div >
+        <div > <div >
+            <label htmlFor="email">Email: </label>
+            <input type="text" name="email" id="email" placeholder="email" onChange={(e)=>setData(prev=>{
+                return {
+                    ...prev,
+                    [e.target.name]:e.target.value
+                }
+            })} defaultValue={data.email} />
+        </div>
             <label htmlFor="firstname">Firstname: </label>
             <input type="text" name="firstname" id="firstname" placeholder="firstname" onChange={(e)=>setData(prev=>{
                 return {
@@ -46,7 +54,8 @@ const Edit = () => {
                 }
             })} defaultValue={data.lastname}/>
         </div>
-        <button className="btn btn-warning" type="button" onClick={()=>clickHandler()}>Edit</button>
+        <button className="btn btn-warning" type="button" onClick={()=>editHandler()}>Edit</button>
+       
     </form>
     </div> );
 }

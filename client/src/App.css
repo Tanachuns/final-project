@@ -27,7 +27,25 @@
     color: #fff !important;
 }
 
+.card {
+    transition: transform 0.3s ease-in-out;
+}
 
+.card:hover {
+    transform: scale(1.1);
+}
+
+.home-container>*{
+    margin: 3em 0 3em 0 ;
+}
+
+.home-partners img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.home-partners img:hover {
+    transform: scale(1.2);
+}
 
 a{
     color: white;
@@ -38,4 +56,5 @@ a:hover{
 
 main{
     min-height: 100vh;
+    background: #f4f4f4;
 }
