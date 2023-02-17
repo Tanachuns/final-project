@@ -37,5 +37,9 @@ class Insurance extends Model
         "plan_id",
         "cover_start_date",
         "cover_end_date",
+        "beneficiary_firstname",
+        "beneficiary_lastname",
+        "beneficiary_relation",
+        "beneficiary_title",
     ];
 }

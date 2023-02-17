@@ -4,20 +4,22 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 
-const LoginContainer = () => {
+const LoginContainer = (props) => {
     const [data,setData] = React.useState()
 
    const submitHandler = () =>{
-        toast.promise(
+    toast.promise(
     axios.post("http://127.0.0.1:8000/api/login/",data).then(res=>{
-
+            sessionStorage.setItem("user", JSON.stringify(res.data.data) );
         }),
-    {
-      pending: 'Login is pending',
-      success: 'Login resolved 👌',
-      error: 'Login rejected 🤯'
-    }
-)
+        {
+        pending: 'Login is pending',
+        success: 'Login resolved 👌',
+        error: 'Login rejected 🤯'
+        },
+    ).then(()=>{
+        window.location.href="/"
+    })
         
     }
 

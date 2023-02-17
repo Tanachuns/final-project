@@ -44,4 +44,8 @@ class Customer extends Model
         "password",
         "insurance"
     ];
+
+    protected $hidden = [
+        'password',
+    ];
 }

@@ -10,6 +10,8 @@ import HomeContainer from "./components/Home/HomeContainer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AgentContainer from "./components/Agent/AgentContainer";
+import React from "react";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -23,8 +25,22 @@ function App() {
           <Route path="/" element={<HomeContainer />} />
           <Route path="/purchases" element={<PurchaseContainer />} />
           <Route path="/edit" element={<Edit />} />
-          <Route path="/register" element={<RegisterContainer />} />
-          <Route path="/login" element={<LoginContainer />} />
+          <Route
+            path="/register"
+            element={
+              sessionStorage.getItem("user") ? (
+                <NotFound />
+              ) : (
+                <RegisterContainer />
+              )
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              sessionStorage.getItem("user") ? <NotFound /> : <LoginContainer />
+            }
+          />
           <Route path="/agent" element={<AgentContainer />} />
         </Routes>
       </main>

@@ -49,26 +49,13 @@ const PurchaseContainer = () => {
 
     const submitHandler = ()=>{
         toast.promise(
-     axios.post("http://127.0.0.1:8000/api/register/",customer)
-        .then(
-            res=>{
-                console.log(res.data.data.id);
-                customer["customer_id"] = res.data.data.id;
-                axios.post("http://127.0.0.1:8000/api/insurance/",customer).then(res=>{
-                console.log(res)
-            }).catch(err=>{
-                console.log(err);
-            })
+            axios.post("http://127.0.0.1:8000/api/insurance/",customer).catch(err=>{console.log(err)})
+            ,{
+                pending: 'Purchases is pending',
+                success: 'Purchases resolved, Check your email 👌',
+                error: 'Purchases rejected 🤯'
             }
         )
-        ,
-    {
-      pending: 'Register is pending',
-      success: 'Register resolved 👌',
-      error: 'Register rejected 🤯'
-    }
-)
-       
     }
     const fromHandler = (e)=>{
         setCustomer(prev=>{

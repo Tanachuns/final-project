@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 use App\Models\Insurance;
 
 class InsuranceController extends Controller
@@ -31,11 +32,19 @@ class InsuranceController extends Controller
      */
     public function store(Request $request)
     {
+        $customer = Customer::where("citizenId",$request->citizenId)->first();
         $data = $request->all();
+        if (!$customer) {
+             app(RegisterController::class)->store($request);
+             $customer = Customer::where("citizenId",$request->citizenId)->first();
+        }
+
+        $data['customer_id'] = $customer->id;
         $ins=Insurance::create($data);
         return response()->json([
             "data"=>$ins
         ],200);
+
     }
 
     /**

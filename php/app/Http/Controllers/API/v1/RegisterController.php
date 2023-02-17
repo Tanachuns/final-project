@@ -80,8 +80,6 @@ class RegisterController extends Controller
     {
         $registers = Customer::find($id);
         $insur = $registers->insurance;
-        dd($insur);
-
         return response()->json([
             "user"=>$registers,
         ]
@@ -110,6 +108,7 @@ class RegisterController extends Controller
     {
         $registers = Customer::find($id);
         if($registers){
+            $request['password'] = bcrypt($request['password']);
             $registers->update($request->all());
             return response()->json([
             "data"=>$registers,
