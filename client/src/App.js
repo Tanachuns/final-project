@@ -7,10 +7,14 @@ import FooterContainer from "./components/Footer/FooterContainer";
 import RegisterContainer from "./components/Register/RegisterContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import HomeContainer from "./components/Home/HomeContainer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AgentContainer from "./components/Agent/AgentContainer";
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <nav>
         <NavbarContainer />
       </nav>
@@ -21,6 +25,7 @@ function App() {
           <Route path="/edit" element={<Edit />} />
           <Route path="/register" element={<RegisterContainer />} />
           <Route path="/login" element={<LoginContainer />} />
+          <Route path="/agent" element={<AgentContainer />} />
         </Routes>
       </main>
       <footer>

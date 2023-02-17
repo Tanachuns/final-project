@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\v1\RegisterController;
+use App\Http\Controllers\API\v1\PlanController;
+use App\Http\Controllers\API\v1\InsuranceController;
+
 
 
 /*
@@ -21,3 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/register', RegisterController::class);
+Route::resource('/plan', PlanController::class);
+Route::resource('/insurance', InsuranceController::class);
+
+Route::post('/send-email', [RegisterController::class, 'sendEmail']);
+Route::post('/login', [RegisterController::class, 'checkLogin']);
+Route::get('/pdf', [RegisterController::class, 'loadPDF']);
+

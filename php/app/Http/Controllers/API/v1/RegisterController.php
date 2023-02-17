@@ -3,11 +3,26 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Customer;
-
+use App\Mail\RegisterSendEmail;
+use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 class RegisterController extends Controller
 {
+    public function sendEmail($email,$password)
+    {
+
+        Mail::to($email)->send(new RegisterSendEmail($email,$password));
+            return new JsonResponse(
+                [
+                    'success' => $email,
+                    'message' => "Thank you for register to our website, please check your inbox"
+                ], 200
+            );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +30,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $registers = Customer::skip(0)->take(10)->get();
+        $registers = Customer::all();
         $count = Customer::count();
         return response()->json([
             "data"=>$registers,
@@ -42,14 +57,19 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->all());
 
+        $password = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 5)), 0, 16);
+        $data = $request->all();
+        $data['password'] = bcrypt($password);
+        $register=Customer::create($data);
+        if ($register) {
+           $this->sendEmail($data['email'],$password);
+        }
         return response()->json([
-            "Status"=>"Success"
+            "data"=>$request->email
         ],200);
 
     }
-
     /**
      * Display the specified resource.
      *
@@ -59,8 +79,9 @@ class RegisterController extends Controller
     public function show($id)
     {
         $registers = Customer::find($id);
+        $insur = $registers->insurance;
         return response()->json([
-            "data"=>$registers,
+            "user"=>$registers,
         ]
         ,200);
     }
@@ -99,6 +120,7 @@ class RegisterController extends Controller
         ,400);
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -107,6 +129,49 @@ class RegisterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $registers = Customer::find($id);
+        if($registers){
+            $registers->delete($id);
+            return response()->json([
+            "data"=>$registers,
+        ]
+        ,200);
+        }
+        return response()->json([
+            "data"=>null,
+        ]
+        ,400);
+    }
+
+    public function  checkLogin(Request $request){
+        $password = $request->password;
+        $email = $request->email;
+        $register = Customer::where("email",$email)->first();
+        if ($register) {
+            if(\Hash::check($password, $register->password)){
+                unset($register['password']);
+                 return response()->json([
+                    "data"=>$register,
+                ]
+                ,200);
+            }else{
+                 return response()->json([
+                    "data"=>"smt wrong",
+                ]
+                ,401);
+            }
+        }else {
+             return response()->json([
+            "data"=>"not found",
+        ]
+        ,401);
+        }
+    }
+
+    public function loadPDF(){
+        $data= Customer::find(2);
+        // dd($data->email);
+        $pdf = Pdf::loadView('pdf.index',["data"=>$data]);
+        return $pdf->download('invoice.pdf');
     }
 }

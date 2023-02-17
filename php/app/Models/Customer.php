@@ -9,7 +9,10 @@ class Customer extends Model
 {
     use HasFactory;
     public $timestamps = true;
-
+    public function insurance()
+    {
+        return $this->hasMany(Insurance::class);
+    }
     /**
      * The database table used by the model.
      *
@@ -38,5 +41,7 @@ class Customer extends Model
         "address_tumbon",
         "address_province",
         "address_zipcode",
+        "password",
+        "insurance"
     ];
 }

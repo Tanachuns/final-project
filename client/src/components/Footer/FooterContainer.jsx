@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const FooterContainer = () => {
     return ( 
         <footer class="bg-blue text-light text-center text-lg-start">
@@ -10,7 +11,7 @@ const FooterContainer = () => {
         <h5 class="text-uppercase">Agent/Broker</h5>
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="/about">Agent/Broker</a>
+            <Link to="/agent">Agent/Broker</Link>
           </li>
         </ul>
       </div>
@@ -18,7 +19,7 @@ const FooterContainer = () => {
         <h5 class="text-uppercase">About</h5>
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="/about">Our Company</a>
+            <Link to="/about">Our Company</Link>
           </li>
           <li>
              <a href="https://storyset.com/people">

@@ -1,5 +1,16 @@
+import React from 'react';
+// import axios from "axios";
 const PurchaseTable = (props) => {
-    console.log(props.data)
+    // const [plan,setPlan] = React.useState()
+    const plan = {
+        plan_name:"Premium",
+        plan_coverage:"200000thb",
+        plan_desc:"Help your health",
+        plan_price:120000
+    }
+    React.useEffect(()=>{
+
+    },[])
     const beneficiaryTable = (<>
     <h3>Beneficiary Details</h3>
         <tbody>
@@ -91,12 +102,25 @@ const PurchaseTable = (props) => {
                 <th>Zipcode</th>
                 <td>{props.data.address_zipcode}</td>
             </tr>
+            <br/>
              </tbody>
         <h3>Plan</h3>
         <tbody>
             <tr >
                 <th>Name</th>
-                <td>{props.data.address_houseNumber}</td>
+                <td>{plan.plan_name}</td>
+            </tr>
+            <tr >
+                <th>Desc</th>
+                <td>{plan.plan_desc}</td>
+            </tr>
+            <tr >
+                <th>Coverage</th>
+                <td>{plan.plan_coverage}</td>
+            </tr>
+            <tr >
+                <th>Price</th>
+                <td>{plan.plan_price}</td>
             </tr>
         </tbody>
     </table>

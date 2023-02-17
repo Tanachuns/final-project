@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("firstname")->nullable();
             $table->string("lastname")->nullable();
             $table->string("citizenId")->nullable();
-            $table->string("email")->nullable();
+            $table->string("email")->nullable()->unique();
             $table->string("phone_number")->nullable();
             $table->string("address_houseNumber")->nullable();
             $table->string("address_moo")->nullable();
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string("address_tumbon")->nullable();
             $table->string("address_province")->nullable();
             $table->string("address_zipcode")->nullable();
+            $table->string("password");
             $table->timestamps();
         });
     }

@@ -62,7 +62,7 @@ const PurchaseContainer = () => {
 
 
     return (   
-    <div className="container my-5 ">
+    <div className="container py-5 ">
     
         <dev className="text-center"><h1>Purchases</h1></dev>
         <ul className="pagination justify-content-center">
