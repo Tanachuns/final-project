@@ -66,7 +66,7 @@ class RegisterController extends Controller
            $this->sendEmail($data['email'],$password);
         }
         return response()->json([
-            "data"=>$request->email
+            "data"=>$register
         ],200);
 
     }
@@ -80,6 +80,8 @@ class RegisterController extends Controller
     {
         $registers = Customer::find($id);
         $insur = $registers->insurance;
+        dd($insur);
+
         return response()->json([
             "user"=>$registers,
         ]

@@ -23,6 +23,9 @@ return new class extends Migration
             $table->date("cover_end_date")->nullable();
             $table->timestamps();
         });
+        {
+
+}
     }
 
     /**

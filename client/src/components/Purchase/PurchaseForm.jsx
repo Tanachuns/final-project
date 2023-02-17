@@ -125,11 +125,15 @@ const PurchaseForm = (props) => {
             <label for="plan_name">Plan Name</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="plan_desc" type="text" placeholder="Plan Description"name="plan_desc" defaultValue={props.plan.desc} disabled onChange={(e)=>props.fromHandler(e)} />
+            <textarea style={{height:"10em"}} className="form-control " id="plan_dsc"  type="text-area" placeholder="Plan Description"name="plan_desc" defaultValue={props.plan.desc} disabled onChange={(e)=>props.fromHandler(e)} ></textarea>
             <label for="plan_desc">Plan Description</label>
         </div>
+         <div className="form-floating mb-3">
+            <input className="form-control" id="plan_coverage" type="text" placeholder="Plan Coverage"name="plan_coverage" defaultValue={props.plan.coverage+" THB"} disabled onChange={(e)=>props.fromHandler(e)} />
+            <label for="plan_price">Plan Coverage</label>
+        </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="plan_price" type="text" placeholder="Plan Price"name="plan_price" defaultValue={props.plan.price+" THB/month"} disabled onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="plan_price" type="text" placeholder="Plan Price"name="plan_price" defaultValue={props.plan.price+" THB /month"} disabled onChange={(e)=>props.fromHandler(e)} />
             <label for="plan_price">Plan Price</label>
         </div>
         <div className="form-floating mb-3">

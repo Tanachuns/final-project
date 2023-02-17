@@ -21,7 +21,7 @@ const RegisterContainer = (props) => {
         }),
     {
       pending: 'Register is pending',
-      success: 'Register resolved 👌',
+      success: 'Register resolved,Check Your Email 👌',
       error: 'Register rejected 🤯'
     }
 )

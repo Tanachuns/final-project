@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("title")->nullable();
             $table->string("firstname")->nullable();
             $table->string("lastname")->nullable();
-            $table->string("citizenId")->nullable();
-            $table->string("email")->nullable()->unique();
+            $table->string("citizenId")->unique();
+            $table->string("email")->unique();
             $table->string("phone_number")->nullable();
             $table->string("address_houseNumber")->nullable();
             $table->string("address_moo")->nullable();

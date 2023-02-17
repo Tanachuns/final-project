@@ -3,10 +3,17 @@ import PurchaseTable from "./PurchaseTable";
 import PurchaseSum from "./PurchaseSum"
 import React from 'react';
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const PurchaseContainer = () => {
     const [state,setState] = React.useState(0)
-    const [plan,setPlan] = React.useState()
+    
+    const [plan,setPlan] = React.useState({
+        name:"",
+        desc:"",
+        price:"",
+        coverage:""
+    })
     const [customer,setCustomer] = React.useState(
         {
         title:"",
@@ -35,17 +42,36 @@ const PurchaseContainer = () => {
     }
 
     const pages = [
-        <PurchaseTable fromHandler={(e)=>fromHandler(e)} plan={plan} setPlan={(plan)=>setPlanHandler(plan)}/>,
+        <PurchaseTable data={customer}fromHandler={(e)=>fromHandler(e)} plan={plan} setPlan={(plan)=>setPlanHandler(plan)}/>,
         <PurchaseForm data={customer} fromHandler={(e)=>fromHandler(e)} plan={plan}/>,
         <PurchaseSum data={customer} plan={plan}/>,
     ]
 
-    // const submitHandler = ()=>{
-    //     axios.post("http://127.0.0.1:8000/api/insurance/",)
-    // }
+    const submitHandler = ()=>{
+        toast.promise(
+     axios.post("http://127.0.0.1:8000/api/register/",customer)
+        .then(
+            res=>{
+                console.log(res.data.data.id);
+                customer["customer_id"] = res.data.data.id;
+                axios.post("http://127.0.0.1:8000/api/insurance/",customer).then(res=>{
+                console.log(res)
+            }).catch(err=>{
+                console.log(err);
+            })
+            }
+        )
+        ,
+    {
+      pending: 'Register is pending',
+      success: 'Register resolved 👌',
+      error: 'Register rejected 🤯'
+    }
+)
+       
+    }
     const fromHandler = (e)=>{
         setCustomer(prev=>{
-            console.log(e.target.value)
             if(e.target.name ==="beneficiary"){
                if(e.target.checked===false){
                 return {
@@ -71,7 +97,7 @@ const PurchaseContainer = () => {
 
 
     return (   
-    <div className="container py-5 ">
+    <div className="container py-5 overflow-scroll">
     
         <dev className="text-center"><h1>Purchases</h1></dev>
         <ul className="pagination justify-content-center">
@@ -83,7 +109,7 @@ const PurchaseContainer = () => {
        <div className="my-3 mx-auto d-flex justify-content-between col-lg-4 col-md-6 col-sm-12">
             {state>=1&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev-=1)} >Previous</button>}
             {state<2&&<button className="btn btn-primary" type="button" onClick={()=>setState(prev=>prev+=1)} >Next</button>}
-            {state===2&&<button className="btn btn-success" type="button" onClick={()=>{alert("mock up submit")}} >Submit</button>}
+            {state===2&&<button className="btn btn-success" type="button" onClick={()=>submitHandler()} >Submit</button>}
         </div>
     </div> 
     );
