@@ -2,10 +2,11 @@ import PurchaseForm from "./PurchaseForm";
 import PurchaseTable from "./PurchaseTable";
 import PurchaseSum from "./PurchaseSum"
 import React from 'react';
+import axios from "axios";
 
 const PurchaseContainer = () => {
     const [state,setState] = React.useState(0)
-    
+    const [plan,setPlan] = React.useState()
     const [customer,setCustomer] = React.useState(
         {
         title:"",
@@ -27,13 +28,21 @@ const PurchaseContainer = () => {
 }
     )
 
+    const setPlanHandler = (plan)=>{
+        axios.get("http://127.0.0.1:8000/api/plan/"+plan).then(res=>{
+            setPlan(res.data.data)
+        })
+    }
+
     const pages = [
-        <PurchaseTable fromHandler={(e)=>fromHandler(e)}/>,
-        <PurchaseForm data={customer} fromHandler={(e)=>fromHandler(e)}/>,
-        <PurchaseSum data={customer} />,
+        <PurchaseTable fromHandler={(e)=>fromHandler(e)} plan={plan} setPlan={(plan)=>setPlanHandler(plan)}/>,
+        <PurchaseForm data={customer} fromHandler={(e)=>fromHandler(e)} plan={plan}/>,
+        <PurchaseSum data={customer} plan={plan}/>,
     ]
 
-
+    // const submitHandler = ()=>{
+    //     axios.post("http://127.0.0.1:8000/api/insurance/",)
+    // }
     const fromHandler = (e)=>{
         setCustomer(prev=>{
             console.log(e.target.value)

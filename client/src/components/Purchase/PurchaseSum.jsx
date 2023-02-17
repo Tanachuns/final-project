@@ -108,19 +108,19 @@ const PurchaseTable = (props) => {
         <tbody>
             <tr >
                 <th>Name</th>
-                <td>{plan.plan_name}</td>
+                <td>{props.plan.name}</td>
             </tr>
             <tr >
                 <th>Desc</th>
-                <td>{plan.plan_desc}</td>
+                <td>{props.plan.desc}</td>
             </tr>
             <tr >
                 <th>Coverage</th>
-                <td>{plan.plan_coverage}</td>
+                <td>{props.plan.coverage}</td>
             </tr>
             <tr >
                 <th>Price</th>
-                <td>{plan.plan_price}</td>
+                <td>{props.plan.price+" THB/month"}</td>
             </tr>
         </tbody>
     </table>

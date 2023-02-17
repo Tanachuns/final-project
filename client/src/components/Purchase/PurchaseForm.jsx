@@ -1,7 +1,6 @@
 import React from 'react';
 
 const PurchaseForm = (props) => {
- 
     const beneficiaryForm = (<>
     <h3>Beneficiary Details</h3>
        <div className="form-floating mb-3">
@@ -122,15 +121,15 @@ const PurchaseForm = (props) => {
 
         <h3>Plan Details</h3>
          <div className="form-floating mb-3">
-            <input className="form-control" id="plan_name" type="text" placeholder="Plan Name"name="plan_name" defaultValue={props.data.plan_name} disabled onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="plan_name" type="text" placeholder="Plan Name"name="plan_name" defaultValue={props.plan.name} disabled onChange={(e)=>props.fromHandler(e)} />
             <label for="plan_name">Plan Name</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="plan_desc" type="text" placeholder="Plan Description"name="plan_desc" defaultValue={props.data.plan_desc} disabled onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="plan_desc" type="text" placeholder="Plan Description"name="plan_desc" defaultValue={props.plan.desc} disabled onChange={(e)=>props.fromHandler(e)} />
             <label for="plan_desc">Plan Description</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="plan_price" type="text" placeholder="Plan Price"name="plan_price" defaultValue={props.data.plan_price} disabled onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="plan_price" type="text" placeholder="Plan Price"name="plan_price" defaultValue={props.plan.price+" THB/month"} disabled onChange={(e)=>props.fromHandler(e)} />
             <label for="plan_price">Plan Price</label>
         </div>
         <div className="form-floating mb-3">
