@@ -46,7 +46,12 @@ class InsuranceController extends Controller
      */
     public function show($id)
     {
-        //
+        $ins = Insurance::find($id);
+        $ins->plan;
+        return response()->json([
+            "data"=>$ins,
+        ]
+        ,200);
     }
 
     /**
@@ -69,7 +74,18 @@ class InsuranceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ins = Insurance::find($id);
+        if($ins){
+            $ins->update($request->all());
+            return response()->json([
+            "data"=>$ins,
+        ]
+        ,200);
+        }
+        return response()->json([
+            "data"=>null,
+        ]
+        ,400);
     }
 
     /**
@@ -80,6 +96,17 @@ class InsuranceController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $ins = Insurance::find($id);
+        if($ins){
+            $ins->delete($id);
+            return response()->json([
+            "data"=>$ins,
+        ]
+        ,200);
+        }
+        return response()->json([
+            "data"=>null,
+        ]
+        ,400);
     }
 }
