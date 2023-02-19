@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 
 const PurchaseContainer = () => {
     const [state,setState] = React.useState(0)
-    
+    const user =JSON.parse(sessionStorage.getItem("user"))
     const [plan,setPlan] = React.useState({
         name:"",
         desc:"",
@@ -35,6 +35,12 @@ const PurchaseContainer = () => {
 }
     )
 
+    React.useEffect(()=>{
+        if(user){
+            setCustomer(user)
+        }
+    },[])
+
     const setPlanHandler = (plan)=>{
         axios.get("http://127.0.0.1:8000/api/plan/"+plan).then(res=>{
             setPlan(res.data.data)
@@ -47,12 +53,20 @@ const PurchaseContainer = () => {
         <PurchaseSum data={customer} plan={plan}/>,
     ]
 
+
     const submitHandler = ()=>{
         toast.promise(
-            axios.post("http://127.0.0.1:8000/api/insurance/",customer).catch(err=>{console.log(err)})
+            axios.post("http://127.0.0.1:8000/api/insurance/",customer)
             ,{
                 pending: 'Purchases is pending',
-                success: 'Purchases resolved, Check your email 👌',
+                success: {
+        render(){
+          return 'Purchases resolved 👌'
+        },
+        onClose: () => {
+        window.location.href = user?'/myinsurance':"/login";
+      }
+      } ,
                 error: 'Purchases rejected 🤯'
             }
         )

@@ -1,4 +1,29 @@
+import { Link } from "react-router-dom";
+import axios from "axios";
+import React from 'react';
+
 const HomeContainer = () => {
+  const [plan,setPlan] = React.useState([])
+  React.useEffect(()=>{
+    axios.get("http://127.0.0.1:8000/api/plan/").then(res=>{
+        setPlan(res.data.data)
+    })
+  },[])
+
+  
+
+  const plans = plan.map((item,key)=>{
+    return (<div class="col-md-4 mb-4">
+      <div class="card border-0 shadow">
+        <div class="card-body text-center">
+          <h3 class="card-title">{item.name}</h3>
+          <p class="card-text">{item.desc}</p>
+          <h4 class="mb-4">{item.price} THB/Month</h4>
+          <Link to="/purchases"  class="btn btn-primary">Learn more</Link>
+        </div>
+      </div>
+    </div>)
+  }) 
     return ( <>
     <div class="container-fluid banner bg-white">
         <div class="row">
@@ -30,38 +55,11 @@ const HomeContainer = () => {
             
         </div>
 
-  <h2 class="text-center mb-5">Our Insurance Plans <sup ><a href="" className="text-blue">more</a></sup></h2>
+  <h2 class="text-center mb-5">Our Insurance Plans </h2>
   <div class="row justify-content-center align-items-center">
-    <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body text-center">
-          <h3 class="card-title">Basic Plan</h3>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <h4 class="mb-4">$9.99/month</h4>
-          <a href="#" class="btn btn-primary">Buy Now</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body text-center">
-          <h3 class="card-title">Standard Plan</h3>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <h4 class="mb-4">$19.99/month</h4>
-          <a href="#" class="btn btn-primary">Buy Now</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body text-center">
-          <h3 class="card-title">Premium Plan</h3>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <h4 class="mb-4">$29.99/month</h4>
-          <a href="#" class="btn btn-primary">Buy Now</a>
-        </div>
-      </div>
-    </div>
+    
+    {plans}
+   
   </div>
 
   <div class="about-insurance py-5 m-auto text-center">
@@ -82,7 +80,7 @@ const HomeContainer = () => {
             <h4>Hospital Partners</h4>
         </div>
        </div>
-        <a href="#" class="btn btn-primary mt-4">Learn More</a>
+        <Link to="#" class="btn btn-primary mt-4">Learn More</Link>
       </div>
      
     </div>

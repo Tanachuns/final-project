@@ -29,6 +29,7 @@ class Customer extends Model
         "title",
         "firstname",
         "lastname",
+        "birth_date",
         "citizenId",
         "email",
         "phone_number",

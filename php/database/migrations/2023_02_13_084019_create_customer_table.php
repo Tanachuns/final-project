@@ -15,21 +15,22 @@ return new class extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->id();
-            $table->string("title")->nullable();
-            $table->string("firstname")->nullable();
-            $table->string("lastname")->nullable();
+            $table->string("title");
+            $table->string("firstname");
+            $table->string("lastname");
+            $table->string("birth_date");
             $table->string("citizenId")->unique();
             $table->string("email")->unique();
             $table->string("phone_number")->nullable();
-            $table->string("address_houseNumber")->nullable();
-            $table->string("address_moo")->nullable();
-            $table->string("address_village")->nullable();
-            $table->string("address_soi")->nullable();
-            $table->string("address_road")->nullable();
-            $table->string("address_amphur")->nullable();
-            $table->string("address_tumbon")->nullable();
-            $table->string("address_province")->nullable();
-            $table->string("address_zipcode")->nullable();
+            $table->string("address_houseNumber");
+            $table->string("address_moo");
+            $table->string("address_village");
+            $table->string("address_soi");
+            $table->string("address_road");
+            $table->string("address_amphur");
+            $table->string("address_tumbon");
+            $table->string("address_province");
+            $table->string("address_zipcode");
             $table->string("password");
             $table->timestamps();
         });

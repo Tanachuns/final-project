@@ -38,7 +38,6 @@ class InsuranceController extends Controller
              app(RegisterController::class)->store($request);
              $customer = Customer::where("citizenId",$request->citizenId)->first();
         }
-
         $data['customer_id'] = $customer->id;
         $ins=Insurance::create($data);
         return response()->json([
@@ -57,6 +56,18 @@ class InsuranceController extends Controller
     {
         $ins = Insurance::find($id);
         $ins->plan;
+        return response()->json([
+            "data"=>$ins,
+        ]
+        ,200);
+    }
+
+    public function findByUser($id)
+    {
+        $ins = Insurance::where("customer_id",$id)->get();
+        foreach ($ins as $item) {
+            $item->plan;
+        }
         return response()->json([
             "data"=>$ins,
         ]

@@ -137,11 +137,11 @@ const PurchaseForm = (props) => {
             <label for="plan_price">Plan Price</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="start_date" type="date" placeholder="Coverage Start Date"name="start_date" defaultValue={props.data.start_date} required onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="start_date" type="date" placeholder="Coverage Start Date"name="cover_start_date" defaultValue={props.data.start_date} required onChange={(e)=>props.fromHandler(e)} />
             <label for="start_date">Coverage Start Date</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="end_date" type="date" placeholder="Coverage End Date"name="end_date" defaultValue={props.data.end_date} required onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="end_date" type="date" placeholder="Coverage End Date"name="cover_end_date" defaultValue={props.data.end_date} required onChange={(e)=>props.fromHandler(e)} />
             <label for="end_date">Coverage End Date</label>
         </div>
         

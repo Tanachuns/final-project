@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign("customer_id")->references('id')->on('customer')->onDelete('cascade');
             $table->integer("plan_id")->unsigned();
             $table->foreign("plan_id")->references('id')->on('plan')->onDelete('cascade');
-            $table->date("cover_start_date")->nullable();
-            $table->date("cover_end_date")->nullable();
+            $table->date("cover_start_date");
+            $table->date("cover_end_date");
             $table->string( "beneficiary_firstname")->nullable();
             $table->string(  "beneficiary_lastname")->nullable();
             $table->string("beneficiary_relation")->nullable();

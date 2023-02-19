@@ -13,13 +13,23 @@ const LoginContainer = (props) => {
             sessionStorage.setItem("user", JSON.stringify(res.data.data) );
         }),
         {
-        pending: 'Login is pending',
-        success: 'Login resolved 👌',
+        pending: {
+        render(){
+          return 'Login is pending'
+        },
+      },
+        success:{
+        render(){
+          return 'Login resolved 👌'
+        },
+        onClose: () => {
+        window.location.href = '/';
+      }
+      } 
+        ,
         error: 'Login rejected 🤯'
         },
-    ).then(()=>{
-        window.location.href="/"
-    })
+    )
         
     }
 

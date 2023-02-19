@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/register', RegisterController::class);
 Route::resource('/plan', PlanController::class);
 Route::resource('/insurance', InsuranceController::class);
-
+Route::get('user/insurance/{id}',[InsuranceController::class, 'findByUser']);
 Route::post('/send-email', [RegisterController::class, 'sendEmail']);
 Route::post('/login', [RegisterController::class, 'checkLogin']);
 Route::get('/pdf', [RegisterController::class, 'loadPDF']);
