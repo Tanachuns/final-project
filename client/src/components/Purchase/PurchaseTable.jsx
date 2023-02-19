@@ -21,7 +21,7 @@ const PurchaseTable = (props) => {
       }
     ).map((item)=>{
       return (<tr>
-      <th scope="row"><input className="form-check-input" checked={props.data.plan_id==item.id} type="radio" name="plan_id"  value={item.id} onChange={(e)=>{
+      <th scope="row"><input className="form-check-input" checked={parseInt(props.data.plan_id)===item.id} type="radio" name="plan_id"  value={item.id} onChange={(e)=>{
         props.fromHandler(e)
         props.setPlan(e.target.value)
         }} /></th>

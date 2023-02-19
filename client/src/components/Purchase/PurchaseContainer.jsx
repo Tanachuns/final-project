@@ -39,7 +39,7 @@ const PurchaseContainer = () => {
         if(user){
             setCustomer(user)
         }
-    },[])
+    },[user])
 
     const setPlanHandler = (plan)=>{
         axios.get("http://127.0.0.1:8000/api/plan/"+plan).then(res=>{

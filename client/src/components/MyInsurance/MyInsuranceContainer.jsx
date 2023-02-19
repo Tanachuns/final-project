@@ -9,7 +9,7 @@ const MyInsuranceContainer = (props) => {
             setInsurance(res.data.data)
             console.log(res,user.id);
         })
-    },[])
+    },[user])
 
 
 const ins = insurance.map((item)=>{
