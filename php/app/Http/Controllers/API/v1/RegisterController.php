@@ -79,7 +79,6 @@ class RegisterController extends Controller
     public function show($id)
     {
         $registers = Customer::find($id);
-        $insur = $registers->insurance;
         return response()->json([
             "user"=>$registers,
         ]

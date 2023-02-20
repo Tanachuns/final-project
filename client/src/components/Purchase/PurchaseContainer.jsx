@@ -7,7 +7,6 @@ import {toast} from "react-toastify";
 
 const PurchaseContainer = () => {
     const [state,setState] = React.useState(0)
-    const user =JSON.parse(sessionStorage.getItem("user"))
     const [plan,setPlan] = React.useState({
         name:"",
         desc:"",
@@ -34,12 +33,14 @@ const PurchaseContainer = () => {
         beneficiary:false
 }
     )
+    const user =JSON.parse(sessionStorage.getItem("user"))
+
 
     React.useEffect(()=>{
         if(user){
             setCustomer(user)
         }
-    },[user])
+    },[])
 
     const setPlanHandler = (plan)=>{
         axios.get("http://127.0.0.1:8000/api/plan/"+plan).then(res=>{

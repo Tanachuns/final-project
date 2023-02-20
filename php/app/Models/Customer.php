@@ -43,10 +43,10 @@ class Customer extends Model
         "address_province",
         "address_zipcode",
         "password",
-        "insurance"
     ];
 
     protected $hidden = [
         'password',
+
     ];
 }

@@ -12,6 +12,8 @@ import AgentContainer from "./components/Agent/AgentContainer";
 import React from "react";
 import NotFound from "./components/NotFound/NotFound";
 import MyInsuranceContainer from "./components/MyInsurance/MyInsuranceContainer";
+import Auth from "./components/NotFound/Auth";
+import MyProfileContainer from "./components/MyProfile/MyProfileContainer";
 
 function App() {
   return (
@@ -24,20 +26,18 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="/purchases" element={<PurchaseContainer />} />
+          <Route path="/agent" element={<AgentContainer />} />
+          {/* auth routes */}
           <Route
             path="/register"
             element={
-              sessionStorage.getItem("user") ? (
-                <NotFound />
-              ) : (
-                <RegisterContainer />
-              )
+              sessionStorage.getItem("user") ? <Auth /> : <RegisterContainer />
             }
           />
           <Route
             path="/login"
             element={
-              sessionStorage.getItem("user") ? <NotFound /> : <LoginContainer />
+              sessionStorage.getItem("user") ? <Auth /> : <LoginContainer />
             }
           />
           <Route
@@ -50,7 +50,16 @@ function App() {
               )
             }
           />
-          <Route path="/agent" element={<AgentContainer />} />
+          <Route
+            path="/myprofile"
+            element={
+              !sessionStorage.getItem("user") ? (
+                <NotFound />
+              ) : (
+                <MyProfileContainer />
+              )
+            }
+          />
         </Routes>
       </main>
       <footer>
