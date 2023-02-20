@@ -30,7 +30,10 @@ const HomeContainer = () => {
             <div class="col-md-6 d-flex justify-content-center align-items-center flex-column text-center">
                 <h1 class="display-4 my-3"><b>Tanarak Insurance Protection</b></h1>
                 <p>e vitae, pulvinar eu nibh. Duis tortor erat, interdum ac metus ac, viverra pulvinar nisl. Proin interdum vulputate luctus. Aliquam id turpis a mi auctor placerat. Donec gravida nunc tincidunt orci suscipit congue. Ut in arcu volutpat, tincidunt erat vel, dictum lacus.</p>
+          <Link to="/purchases"  class="btn btn-primary">Buy Now</Link>
+            
             </div>
+            
             <div class="col-md-6 d-flex justify-content-center align-items-center">
                 <img src="/images/home-header.png" alt="Banner " class="img-fluid h-50" />
             </div>
@@ -80,7 +83,6 @@ const HomeContainer = () => {
             <h4>Hospital Partners</h4>
         </div>
        </div>
-        <Link to="#" class="btn btn-primary mt-4">Learn More</Link>
       </div>
      
     </div>

@@ -14,6 +14,7 @@ import NotFound from "./components/NotFound/NotFound";
 import MyInsuranceContainer from "./components/MyInsurance/MyInsuranceContainer";
 import Auth from "./components/NotFound/Auth";
 import MyProfileContainer from "./components/MyProfile/MyProfileContainer";
+import ChangPasswordContainer from "./components/ChangePassword/ChangPasswordContainer";
 
 function App() {
   return (
@@ -57,6 +58,16 @@ function App() {
                 <NotFound />
               ) : (
                 <MyProfileContainer />
+              )
+            }
+          />
+          <Route
+            path="/password"
+            element={
+              !sessionStorage.getItem("user") ? (
+                <NotFound />
+              ) : (
+                <ChangPasswordContainer />
               )
             }
           />

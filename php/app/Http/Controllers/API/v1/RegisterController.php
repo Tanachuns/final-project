@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Insurance;
 use App\Mail\RegisterSendEmail;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -107,8 +108,11 @@ class RegisterController extends Controller
     {
         $registers = Customer::find($id);
         if($registers){
-            $request['password'] = bcrypt($request['password']);
+            if ($request->password) {
+                $request['password'] = bcrypt($request['password']);
+            }
             $registers->update($request->all());
+
             return response()->json([
             "data"=>$registers,
         ]
@@ -168,10 +172,31 @@ class RegisterController extends Controller
         }
     }
 
-    public function loadPDF(){
-        $data= Customer::find(2);
-        // dd($data->email);
-        $pdf = Pdf::loadView('pdf.index',["data"=>$data]);
+    public function loadPDF($id){
+        $data= Insurance::find($id);
+        $user = Customer::find($data->customer_id);
+        $pdf = Pdf::loadView('pdf.index',[
+            "data"=>$data,
+            "user"=>$user
+        ]);
         return $pdf->download('invoice.pdf');
     }
+
+    public function changePw(Request $request,$id){
+        $user = Customer::find($id);
+        if (\Hash::check($request['current_password'], $user->password)) {
+           $request['password'] = bcrypt($request['password']);
+            $user->update($request->all());
+            return response()->json([
+                    "data"=>$user,
+                ]
+                ,200);
+        }
+        return response()->json([
+                    "data"=>null,
+                ]
+                ,404);
+    }
+
+
 }

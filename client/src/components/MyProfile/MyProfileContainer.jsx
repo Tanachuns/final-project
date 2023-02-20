@@ -11,7 +11,6 @@ const MyProfileContainer = () => {
         })
     },[])
     const changeHandler=(e)=>{
-        console.log(e.target.value);
         setData(prev=>{
             return {
                 ...prev,
@@ -37,7 +36,6 @@ const MyProfileContainer = () => {
             }
         )
     }
-    console.log(data);
     return ( <>
     <div className="container py-5">
         <h1>My Profile</h1>

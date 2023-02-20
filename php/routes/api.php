@@ -29,5 +29,6 @@ Route::resource('/insurance', InsuranceController::class);
 Route::get('user/insurance/{id}',[InsuranceController::class, 'findByUser']);
 Route::post('/send-email', [RegisterController::class, 'sendEmail']);
 Route::post('/login', [RegisterController::class, 'checkLogin']);
-Route::get('/pdf', [RegisterController::class, 'loadPDF']);
+Route::get('/pdf/{id}', [RegisterController::class, 'loadPDF']);
+Route::put('/changepassword/{id}', [RegisterController::class, 'changePw']);
 

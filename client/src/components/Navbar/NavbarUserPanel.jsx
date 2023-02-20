@@ -12,11 +12,14 @@ const NavbarUserPanel = (props) => {
           <ul className="dropdown-menu dropdown-menu-dark bg-blue dropdown-menu-end position-absolute" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><Link to="/myprofile" className="dropdown-item">My Profile</Link></li>
             <li><Link to="/myinsurance" className="dropdown-item">My Insurances</Link></li>
+            <li><Link to="/password" className="dropdown-item">Change Password</Link></li>
+            <hr />
+            <li><Link to="/purchases" className="dropdown-item">Buy Insurance</Link></li>
             <hr />
             <li><Link onClick={()=>{
               sessionStorage.removeItem("user")
-              toast.success("Hello").then(()=>{
-              window.location.href="/"
+              toast.success("Logout").then(()=>{
+              window.location.href="../"
             })
               sessionStorage.removeItem("user")
               }} className="dropdown-item">Logout</Link></li>
