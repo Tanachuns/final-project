@@ -10,8 +10,12 @@ use App\Models\Insurance;
 use App\Mail\RegisterSendEmail;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
+use JWTAuth;
+use JWTAuthException;
+
 class RegisterController extends Controller
 {
+
     public function sendEmail($email,$password)
     {
 
@@ -24,6 +28,30 @@ class RegisterController extends Controller
             );
     }
 
+    public function sendEmailPDF()
+    {
+        $data= Insurance::find(5);
+        $user = Customer::find($data->customer_id);
+        $pdf = Pdf::loadView('pdf.index',[
+            "data"=>"$data",
+            "user"=>"$user"
+        ]);
+        $email = "tanarak.chuns@gmail.com";
+        $password = "123";
+
+        Mail::send('emails.RegisterSendEmail', ["test"=>"test"], function($message)use($data, $pdf) {
+            $message->to("tanarak.chuns@gmail.com","tanarak.chuns@gmail.com" )
+                    ->subject("title")
+                    ->attachData($pdf->output(), "text.pdf");
+        });
+            return new JsonResponse(
+                [
+                    'success' => "ok",
+                    'message' => "Thank you for register to our website, please check your inbox"
+                ], 200
+            );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +59,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+
         $registers = Customer::all();
         $count = Customer::count();
         return response()->json([
@@ -180,6 +209,7 @@ class RegisterController extends Controller
             "user"=>$user
         ]);
         return $pdf->download('invoice.pdf');
+
     }
 
     public function changePw(Request $request,$id){

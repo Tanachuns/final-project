@@ -19,10 +19,6 @@ use App\Http\Controllers\API\v1\InsuranceController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::resource('/register', RegisterController::class);
 Route::resource('/plan', PlanController::class);
 Route::resource('/insurance', InsuranceController::class);
@@ -31,4 +27,6 @@ Route::post('/send-email', [RegisterController::class, 'sendEmail']);
 Route::post('/login', [RegisterController::class, 'checkLogin']);
 Route::get('/pdf/{id}', [RegisterController::class, 'loadPDF']);
 Route::put('/changepassword/{id}', [RegisterController::class, 'changePw']);
+Route::get('/pdfemail', [RegisterController::class, 'sendEmailPDF']);
+
 

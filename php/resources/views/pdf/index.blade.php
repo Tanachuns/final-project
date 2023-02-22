@@ -12,11 +12,10 @@
 </head>
 
 <body>
-    <style></style>
-    <div class="container">
-        <div style="margin:auto">
-            <h1>Insurance</h1>
-        </div>
+    {{-- <div class="container"> --}}
+    {{-- <div style="margin:auto"> --}}
+    <h1>Insurance</h1>
+    {{-- </div>
         <div>
             <h3>Customer Details</h3>
             <table>
@@ -132,7 +131,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
 
 </body>
 

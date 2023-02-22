@@ -15,7 +15,7 @@ const PurchaseForm = (props) => {
         </div>
         <div className="form-floating mb-3">
             <select className="form-select" id="beneficiary_title" aria-label="Title" name="beneficiary_title" defaultValue={props.data.beneficiary_title} required onChange={(e)=>props.fromHandler(e)}>
-                <option selected disabled>Title</option>
+                <option selected disabled value={""}>Title</option>
                 <option value="Mr.">Mr.</option>
                 <option value="Mrs.">Mrs.</option>
                 <option value="Miss.">Miss.</option>

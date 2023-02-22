@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Insurance;
+use \Firebase\JWT\JWT;
 
 class InsuranceController extends Controller
 {
@@ -52,12 +53,20 @@ class InsuranceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         $ins = Insurance::find($id);
         $ins->plan;
+        $key = "sdasdas";
+        $payload = array(
+            "user_id" => 123,
+            "username" => "johndoe",
+            "exp" => time() + 3600
+        );
+        $jwt = JWT::encode($payload, $key);
         return response()->json([
-            "data"=>$ins,
+            "data"=>$jwt,
         ]
         ,200);
     }
