@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::group([
 
 Route::resource('/user',UserController::class);
 Route::resource('/plan', PlanController::class);
+Route::resource('/order',OrderController::class);
 
 
 

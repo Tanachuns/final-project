@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Orders extends Model
 {
     use HasFactory;
    public function plan()
@@ -17,7 +17,22 @@ class Order extends Model
         return $this->user(Customer::class);
     }
     protected $fillable = [
-        "user_citizen_id",
+        "title",
+        "firstname",
+        "lastname",
+        "birth_date",
+        "citizen_id",
+        "email",
+        "phone_number",
+        "address_houseNumber",
+        "address_moo",
+        "address_village",
+        "address_soi",
+        "address_road",
+        "address_amphur",
+        "address_tumbon",
+        "address_province",
+        "address_zipcode",
         "plan_id",
         "cover_start_date",
         "cover_end_date",
@@ -26,7 +41,6 @@ class Order extends Model
         "beneficiary_relation",
         "beneficiary_title",
         "agent_id",
-        "agnet_id",
         "status",
     ];
 }

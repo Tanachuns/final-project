@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Orders;
+use App\Models\User;
+
 
 class OrderController extends Controller
 {
@@ -11,23 +14,20 @@ class OrderController extends Controller
      */
     public function index()
     {
-
+        return response()->json(
+            [
+                "status"=>"success",
+                "data"=>Orders::all()
+            ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $order=Orders::create($data);
+        return response()->json([
+            "data"=>$order
+        ],200);
     }
 
     /**
@@ -35,23 +35,25 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json([
+            "data"=>Orders::find($id)
+        ],200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $order = Orders::find($id);
+        if($order){
+            $order->update($request->all());
+            return response()->json([
+            "data"=>$order,
+        ]
+        ,200);
+        }
+        return response()->json([
+            "error"=>"Not Found",
+        ]
+        ,404);
     }
 
     /**
@@ -59,6 +61,17 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         $order = Orders::find($id);
+        if($order){
+            $order->delete($id);
+            return response()->json([
+            "data"=>$order,
+        ]
+        ,200);
+        }
+        return response()->json([
+            "error"=>"Not Found",
+        ]
+        ,404);
     }
 }

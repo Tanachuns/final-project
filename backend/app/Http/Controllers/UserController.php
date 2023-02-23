@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Orders;
 
 class UserController extends Controller
 {
@@ -23,7 +24,11 @@ class UserController extends Controller
 
     public function show(string $id,Request $request)
     {
-             return response()->json(User::find($id));
+            $user = User::find($id);
+             return response()->json([
+                "user"=>$user,
+                "insurance" =>Orders::where('citizen_id',$user->citizen_id)->get()
+             ]);
     }
 
     public function update(Request $request, string $id)
