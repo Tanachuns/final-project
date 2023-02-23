@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plan', function (Blueprint $table) {
             $table->id();
             $table->string("name")->nullable();
-            $table->longText("desc")->nullable();
+            $table->longText("description")->nullable();
             $table->integer("price")->nullable();
             $table->integer("coverage")->nullable();
             $table->timestamps();
