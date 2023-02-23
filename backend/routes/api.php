@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::group([
     Route::post('register', 'AuthController@register');
 });
 
-Route::resource('/user',Controllers\UserController::class);
+Route::resource('/user',UserController::class);
+Route::resource('/plan', PlanController::class);
+
 
 
