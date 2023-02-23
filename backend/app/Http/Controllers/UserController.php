@@ -14,7 +14,11 @@ class UserController extends Controller
     }
     public function index()
     {
-        return response()->json(User::all());
+        return response()->json(
+            [
+                "status"=>"success",
+                "data"=>User::all()
+            ]);
     }
 
     public function show(string $id,Request $request)
@@ -44,6 +48,18 @@ class UserController extends Controller
 
     public function destroy(string $id)
     {
+        $user = User::find($id);
+        if($user){
+            $user->delete($id);
+            return response()->json([
+            "status"=>"success",
+       ]
+        ,200);
+        }
+        return response()->json([
+            "status"=>"User Not Found",
 
+        ]
+        ,404);
     }
 }

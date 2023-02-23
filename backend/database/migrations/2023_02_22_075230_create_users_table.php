@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string("address_province")->nullable();
             $table->string("address_zipcode")->nullable();
             $table->string("password");
+            $table->string("health_condition")->nullable();
             $table->string("license_number")->nullable();
             $table->string("license_exp_date")->nullable();
             $table->string("type")->nullable();

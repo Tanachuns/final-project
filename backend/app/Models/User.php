@@ -32,6 +32,11 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -61,7 +66,6 @@ class User extends Authenticatable implements JWTSubject
     ];
      protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     // /**
