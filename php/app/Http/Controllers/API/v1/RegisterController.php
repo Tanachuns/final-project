@@ -209,7 +209,6 @@ class RegisterController extends Controller
             "user"=>$user
         ]);
         return $pdf->download('invoice.pdf');
-
     }
 
     public function changePw(Request $request,$id){

@@ -33,5 +33,9 @@ Route::resource('/user',UserController::class);
 Route::resource('/plan', PlanController::class);
 Route::resource('/order',OrderController::class);
 
+Route::post('user/password',[UserController::class ,'changePw']);
+
+
+
 
 

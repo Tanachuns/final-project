@@ -67,4 +67,20 @@ class UserController extends Controller
         ]
         ,404);
     }
+
+    public function changePw(Request $request,$id){
+        $user = User::find($id);
+        if (\Hash::check($request['current_password'], $user->password)) {
+           $request['password'] = bcrypt($request['password']);
+            $user->update($request->all());
+            return response()->json([
+                    "data"=>$user,
+                ]
+                ,200);
+        }
+        return response()->json([
+                    "data"=>null,
+                ]
+                ,404);
+    }
 }
