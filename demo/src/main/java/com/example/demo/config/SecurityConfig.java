@@ -14,6 +14,9 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.demo.service.JwtService;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
@@ -21,6 +24,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -32,15 +36,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors().and()
-                .csrf().disable()
-                .authorizeRequests(auth -> auth.antMatchers(HttpMethod.GET, "/user").permitAll()
-                        .antMatchers("/user/*").authenticated()
+        http.cors().and().csrf().disable()
+                .authorizeRequests(auth -> auth
+                        .antMatchers("/auth").permitAll()
+                        .antMatchers(HttpMethod.GET, "/user").permitAll()
+                        .antMatchers(HttpMethod.GET, "/user/*").authenticated()
                         .antMatchers("/user").authenticated())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic();
+
         return http.build();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user").roles("USER").password("{noop}password")
+                .and()
+                .withUser("admin").roles("USER", "ADMIN").password("{noop}password");
     }
 
     @Bean
@@ -56,17 +70,20 @@ public class SecurityConfig {
         return new NimbusJwtEncoder(immutableSecret);
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").roles("USER").password("{noop}password")
-                .and()
-                .withUser("admin").roles("USER", "ADMIN").password("{noop}password");
-    }
-
     @Bean
     public JwtService tokenService(JwtEncoder encoder) {
         return new JwtService(encoder);
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/"));
+        configuration.setAllowCredentials(true);
+        // configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
 }

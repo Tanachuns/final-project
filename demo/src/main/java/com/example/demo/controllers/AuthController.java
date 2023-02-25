@@ -1,26 +1,26 @@
 package com.example.demo.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.UsersEntity;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.JwtService;
 
+@CrossOrigin(origins = "http://localhost:3000")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @RestController
 public class AuthController {
     @Autowired
@@ -45,22 +45,22 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Object> login(
-            Authentication authentication, @RequestBody HashMap<String, String> data) {
+    public ResponseEntity<Object> login(Authentication authentication, @RequestBody HashMap<String, String> data) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String email = data.get("email");
         String password = data.get("password");
         try {
             Optional<UsersEntity> opt = userRepository.findByEmail(email);
             UsersEntity user = opt.get();
+
             if (passwordEncoder.matches(password, user.getPassword())) {
-                String token = jwtService.generateToken(authentication);
+                System.out.println(user);
+                String token = jwtService.generateToken(user);
                 return new ResponseEntity<>(token, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
     }
 }
