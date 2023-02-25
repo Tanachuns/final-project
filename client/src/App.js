@@ -17,8 +17,6 @@ import MyProfileContainer from "./components/MyProfile/MyProfileContainer";
 import ChangPasswordContainer from "./components/ChangePassword/ChangPasswordContainer";
 import axios from "axios";
 function App() {
-  axios.defaults.withCredentials = true;
-
   return (
     <>
       <ToastContainer />
