@@ -34,7 +34,7 @@ const RegisterContainer = (props) => {
           return 'Register resolved, Check Your Email 👌'
         },
         onClose: () => {
-        window.location.href = '/login';
+        window.location.href = '/';
       }
       } 
         ,
@@ -50,13 +50,7 @@ const RegisterContainer = (props) => {
         <dev className="text-center"><h1>Register</h1></dev>
         <form className="col-lg-4 col-md-6 col-sm-12 m-auto">
              <h3>Customer Details</h3>
-       <div className="form-floating mb-3 ">
-            <select className="form-select" id="type" aria-label="type" name="type" required onChange={(e)=>props.fromHandler(e)}>
-                <option value="Agent">Agent</option>
-                <option value="Broker">Broker</option>
-            </select>
-            <label for="title">Type</label>
-        </div>
+     
         <div className="form-floating mb-3">
             <select className="form-select" id="title" aria-label="Title" name="title" required onChange={(e)=>changeHandler(e)} >
                 <option selected disabled value={""}>Title</option>
@@ -131,6 +125,23 @@ const RegisterContainer = (props) => {
             <input className="form-control" id="zipcode" type="text" placeholder="Zipcode"name="address_zipcode" required  onChange={(e)=>changeHandler(e)}/>
             <label for="zipcode">Zipcode</label>
         </div>
+           <h3>Agent Details</h3>
+          <div className="form-floating mb-3 ">
+            <select className="form-select" id="type" aria-label="type" name="type" required onChange={(e)=>props.fromHandler(e)}>
+                <option value="Agent">Agent</option>
+                <option value="Broker">Broker</option>
+            </select>
+            <label for="title">Type</label>
+        </div>
+        <div className="form-floating mb-3">
+            <input className="form-control" id="licenseNo" type="text" placeholder="License Number"name="license_number" required onChange={(e)=>props.fromHandler(e)} />
+            <label for="licenseNo">License Number</label>
+        </div>
+        <div className="form-floating mb-3">
+            <input className="form-control" id="licenseExpDate" type="date" placeholder="License Exp Date"name="license_exp_date" required onChange={(e)=>props.fromHandler(e)} />
+            <label for="licenseNo">License Exp Date</label>
+        </div>
+        <hr />
         <button className="btn btn-success" type="button" onClick={()=>submitHandler()}>Submit</button>
         <p>or <Link to="/login" className="text-blue">Login</Link></p>    
         </form>

@@ -6,7 +6,7 @@ const NotFound = () => {
         <h1 class="text-center">Unauthorized - Error 401</h1>
         <p class="text-center">click the button below to return to the login page.</p>
         <div class="text-center">
-            <Link className="text-blue" to="/login">Return to Login Page</Link> 
+            <Link className="text-blue" to="/">Return to Login Page</Link> 
         </div>
       </div>
     </div>

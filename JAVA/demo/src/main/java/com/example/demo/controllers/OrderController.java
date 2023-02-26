@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +48,7 @@ public class OrderController {
     @RequestMapping(value = "/user/{id}/order", method = RequestMethod.GET)
     public ResponseEntity<Object> getorderBycitizenID(@PathVariable("id") Integer id) {
 
-        UsersEntity user = userRepository.findById(id).get();
-        List<OrderEntity> opt = orderRepository.findBycitizenId(user.getCitizen_id());
+        List<OrderEntity> opt = orderRepository.findByAgentId(id);
         return new ResponseEntity<>(opt, HttpStatus.OK);
 
     }

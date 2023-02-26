@@ -25,7 +25,7 @@ function App() {
       setTotken(token);
     }
   }, []);
-  console.log(token && jwt_decode(token));
+  console.log(token);
   return (
     <>
       <ToastContainer />

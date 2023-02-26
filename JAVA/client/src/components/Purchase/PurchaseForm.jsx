@@ -151,28 +151,7 @@ const PurchaseForm = (props) => {
             <label for="end_date">Coverage End Date</label>
         </div>
         
-        {/* <h3>Agent Details</h3>
-         <div className="mb-3">
-            <label className="form-label d-block">Type</label>
-            <div className="form-check form-check-inline">
-                <input className="form-check-input" id="agent" type="radio" name="type"name="" required onChange={(e)=>props.fromHandler(e)} />
-                <label className="form-check-label" for="agent">Agent</label>
-            </div>
-            <div className="form-check form-check-inline">
-                <input className="form-check-input" id="broker" type="radio" name="type"name="" required onChange={(e)=>props.fromHandler(e)} />
-                <label className="form-check-label" for="broker">Broker</label>
-            </div>
-        </div>
-        <div className="form-floating mb-3">
-            <input className="form-control" id="licenseNo" type="text" placeholder="License Number"name="" required onChange={(e)=>props.fromHandler(e)} />
-            <label for="licenseNo">License Number</label>
-        </div>
-        <div className="form-floating mb-3">
-            <input className="form-control" id="licenseExpDate" type="date" placeholder="License Exp Date"name="" required onChange={(e)=>props.fromHandler(e)} />
-            <label for="licenseNo">License Exp Date</label>
-        </div>
-        <hr /> */}
-
+       
       
         
 

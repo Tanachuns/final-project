@@ -11,19 +11,18 @@ const MyInsuranceContainer = (props) => {
             setInsurance(res.data)
             console.log(res);
         })
-    },[])
+    },[props.jwt,user.id])
 
-    const printPdf=(id)=>{
-        axios.get(""+id).then(res=>{
-            console.log(res);
-        })
-    }
+
+    console.log(insurance);
 
 const ins = insurance.map((item)=>{
       return (<tr>
+      <td>{item.agent.firstname}</td>
+      <td>{item.firstname}</td>
       <td>{item.plan.name}</td>
-      <td>{item.cover_start_date}</td>
-      <td>{item.cover_end_date}</td>
+      <td>{item.cover_start_date.split("T")[0]}</td>
+      <td>{item.cover_end_date.split("T")[0]}</td>
       <td>{item.plan.price} THB/Month</td>
       <td>{item.beneficiary_relation||"-"}</td>
       <td>{item.beneficiary_firstname||"-"}</td>
@@ -37,6 +36,8 @@ const ins = insurance.map((item)=>{
     <table className="table ">
     <thead>
         <tr>
+        <th scope="col">Agent</th>
+        <th scope="col">Customer</th>
         <th scope="col">Plan</th>
         <th scope="col">Coverage Start</th>
         <th scope="col">Coverage End</th>

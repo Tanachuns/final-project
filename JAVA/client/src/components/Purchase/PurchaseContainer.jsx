@@ -41,7 +41,6 @@ const PurchaseContainer = (props) => {
 
     React.useEffect(()=>{
         if(user){
-            setCustomer(user)
             setCustomer(prev=>{
                 return {
                     ...prev,
@@ -52,13 +51,15 @@ const PurchaseContainer = (props) => {
         axios.get("http://localhost:8080/plan/1").then(res=>{
             setPlan(res.data)
         })
-    },[props.user])
+    },[props.user, user])
 
     const setPlanHandler = (plan)=>{
         axios.get("http://localhost:8080/plan/"+plan).then(res=>{
             setPlan(res.data)
         })
-    }   
+    } 
+    
+
     const dateChangeHandler=(e)=>{
         const  startDate = e.target.value
         const endDate = (parseInt(startDate.split("-")[0])+1)+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[2]
@@ -80,23 +81,23 @@ const PurchaseContainer = (props) => {
     console.log(customer);
 
     const submitHandler = ()=>{
-        // toast.promise(
+        toast.promise(
             axios.post("http://localhost:8080/order",customer).then(res=>{
                 console.log(res);
             })
-    //         ,{
-    //             pending: 'Purchases is pending',
-    //             success: {
-    //     render(){
-    //       return 'Purchases resolved 👌'
-    //     },
-    //     onClose: () => {
-    //     window.location.href = user?'/myinsurance':"/login";
-    //   }
-    //   } ,
-    //             error: 'Purchases rejected 🤯'
-    //         }
-        // )
+            ,{
+                pending: 'Purchases is pending',
+                success: {
+        render(){
+          return 'Purchases resolved 👌'
+        },
+        onClose: () => {
+        window.location.href = user?'/myinsurance':"/";
+      }
+      } ,
+                error: 'Purchases rejected 🤯'
+            }
+        )
     }
     const fromHandler = (e)=>{
         setCustomer(prev=>{
@@ -127,7 +128,7 @@ const PurchaseContainer = (props) => {
 
 
     return (   
-    <div className="container py-5 overflow-scroll">
+    <div className="container py-5">
     
         <dev className="text-center"><h1>Purchases</h1></dev>
         <ul className="pagination justify-content-center">
