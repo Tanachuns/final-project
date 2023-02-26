@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import {toast} from "react-toastify";
-const MyProfileContainer = () => {
+const MyProfileContainer = (props) => {
     const [data,setData]  = React.useState()
-    const user =JSON.parse(sessionStorage.getItem("user"))
+         const user = props.user
+
 
     React.useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/register/"+user.id).then((res)=>{
+        axios.get("http://127.0.0.1:8000/api/user/"+user.id,{
+            headers: {Authorization: "Bearer " + props.jwt}
+        }).then((res)=>{
+            console.log(res);
             setData(res.data.user)
         })
     },[])
@@ -21,7 +25,9 @@ const MyProfileContainer = () => {
 
     const editHandler = () =>{
         toast.promise(
-            axios.put("http://127.0.0.1:8000/api/register/"+user.id,data)
+            axios.put("http://127.0.0.1:8000/api/user/"+user.id,data,{
+            headers: {Authorization: "Bearer " + props.jwt}
+        })
             ,{
                 pending: 'Edit is pending',
                 success: {
@@ -64,8 +70,8 @@ const MyProfileContainer = () => {
             <label for="birth_date">BirthDate</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="citizenId" type="text" placeholder="Citizen ID" name="citizenId"defaultValue={data&&data.citizenId} onChange={(e)=>changeHandler(e)} />
-            <label for="citizenId">Citizen ID</label>
+            <input className="form-control" id="citizen_id" type="text" placeholder="Citizen ID" name="citizen_id"defaultValue={data&&data.citizen_id} onChange={(e)=>changeHandler(e)} />
+            <label for="citizen_id">Citizen ID</label>
         </div>
         <div className="form-floating mb-3">
             <input className="form-control" id="email" type="text" placeholder="Email" name="email" defaultValue={data&&data.email} onChange={(e)=>changeHandler(e)} />
@@ -79,7 +85,7 @@ const MyProfileContainer = () => {
 
         <h3>Address</h3>
         <div className="form-floating mb-3">
-            <input className="form-control" id="houseNumber" type="text" placeholder="House Number"name="address_houseNumber" defaultValue={data&&data.address_houseNumber} onChange={(e)=>changeHandler(e)}/>
+            <input className="form-control" id="house_number" type="text" placeholder="House Number"name="address_house_number" defaultValue={data&&data.address_houseNumber} onChange={(e)=>changeHandler(e)}/>
             <label for="houseNumber">House Number</label>
         </div>
         <div className="form-floating mb-3">

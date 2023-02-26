@@ -25,9 +25,11 @@ class UserController extends Controller
     public function show(string $id,Request $request)
     {
             $user = User::find($id);
+            $insurance=Orders::where('citizen_id',$user->citizen_id)->with('plan')->get();
+
              return response()->json([
                 "user"=>$user,
-                "insurance" =>Orders::where('citizen_id',$user->citizen_id)->get()
+                "insurance" =>$insurance
              ]);
     }
 
@@ -50,6 +52,7 @@ class UserController extends Controller
         ]
         ,400);
     }
+
 
     public function destroy(string $id)
     {

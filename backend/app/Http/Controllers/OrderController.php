@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Orders;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class OrderController extends Controller
@@ -25,6 +28,21 @@ class OrderController extends Controller
     {
         $data = $request->all();
         $order=Orders::create($data);
+        if($order){
+            $data = Orders::find($order->id);
+             $pdf = Pdf::loadView('pdf.index',[
+            "data"=>$data,
+
+        ]);
+        $email = $data->email ;
+        Mail::send('emails.SendEmail', ["test"=>"test"], function($message)use($data, $pdf) {
+            $message->to($email)
+                    ->subject("Insurance")
+                    ->attachData($pdf->output(), "text.pdf");
+        });
+
+    }
+
         return response()->json([
             "data"=>$order
         ],200);

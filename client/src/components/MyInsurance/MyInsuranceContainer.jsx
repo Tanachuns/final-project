@@ -3,10 +3,18 @@ import React from 'react';
 
 const MyInsuranceContainer = (props) => {
     const [insurance,setInsurance] = React.useState([])
-     const user =JSON.parse(sessionStorage.getItem("user"))
+     const user = props.user
     React.useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/user/insurance/"+user.id).then(res=>{
-            setInsurance(res.data.data)
+        axios.get("http://127.0.0.1:8000/api/user/"+user.id,{
+            headers: {Authorization: "Bearer " + props.jwt}
+        }).then(res=>{
+            setInsurance(res.data.insurance)
+            console.log(res,user.id);
+        })
+    },[])
+    React.useEffect(()=>{
+        axios.get("http://127.0.0.1:8000/api/plan/"+insurance.plan_id).then(res=>{
+            setInsurance(res.data.insurance)
             console.log(res,user.id);
         })
     },[])
@@ -16,7 +24,7 @@ const MyInsuranceContainer = (props) => {
             console.log(res);
         })
     }
-
+console.log(insurance);
 
 const ins = insurance.map((item)=>{
       return (<tr>
@@ -26,10 +34,7 @@ const ins = insurance.map((item)=>{
       <td>{item.plan.price} THB/Month</td>
       <td>{item.beneficiary_relation||"-"}</td>
       <td>{item.beneficiary_firstname||"-"}</td>
-      <td><a href={"http://127.0.0.1:8000/api/pdf/"+item.id}><img src="/images/pdf.png" alt="download pdf" height={25} /></a></td>
-
-
-      
+      <td><a href={"http://127.0.0.1:8000/api/loadPdf/"+item.id}><img src="/images/pdf.png" alt="download pdf" height={25} /></a></td>
     </tr>)
     })
 

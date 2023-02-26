@@ -1,5 +1,7 @@
 const AgentContainer = () => {
-    return (    <h1>Agent</h1>  );
+    return (   <div className="bg-blue">
+
+    </div>  );
 }
  
 export default AgentContainer;

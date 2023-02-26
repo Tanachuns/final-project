@@ -33,11 +33,11 @@ class InsuranceController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::where("citizenId",$request->citizenId)->first();
+        $customer = Customer::where("citizen_id",$request->citizen_id)->first();
         $data = $request->all();
         if (!$customer) {
              app(RegisterController::class)->store($request);
-             $customer = Customer::where("citizenId",$request->citizenId)->first();
+             $customer = Customer::where("citizen_id",$request->citizen_id)->first();
         }
         $data['customer_id'] = $customer->id;
         $ins=Insurance::create($data);

@@ -5,7 +5,7 @@ import React from 'react';
 import axios from "axios";
 import {toast} from "react-toastify";
 
-const PurchaseContainer = () => {
+const PurchaseContainer = (props) => {
     const [state,setState] = React.useState(0)
     const [plan,setPlan] = React.useState({
         name:"",
@@ -18,10 +18,10 @@ const PurchaseContainer = () => {
         title:"",
         firstname:"",
         lastname:"",
-        citizenId:"",
+        citizen_id:"",
         email:"",
         phone_number:"",
-        address_houseNumber:"",
+        address_house_number:"",
         address_moo:"",
         address_village:"",
         address_soi:"",
@@ -33,14 +33,14 @@ const PurchaseContainer = () => {
         beneficiary:false
 }
     )
-    const user =JSON.parse(sessionStorage.getItem("user"))
+    const user = props.user
 
 
     React.useEffect(()=>{
         if(user){
             setCustomer(user)
         }
-    },[])
+    },[props.user])
 
     const setPlanHandler = (plan)=>{
         axios.get("http://127.0.0.1:8000/api/plan/"+plan).then(res=>{
@@ -54,23 +54,26 @@ const PurchaseContainer = () => {
         <PurchaseSum data={customer} plan={plan}/>,
     ]
 
+    console.log(customer);
 
     const submitHandler = ()=>{
-        toast.promise(
-            axios.post("http://127.0.0.1:8000/api/insurance/",customer)
-            ,{
-                pending: 'Purchases is pending',
-                success: {
-        render(){
-          return 'Purchases resolved 👌'
-        },
-        onClose: () => {
-        window.location.href = user?'/myinsurance':"/login";
-      }
-      } ,
-                error: 'Purchases rejected 🤯'
-            }
-        )
+        // toast.promise(
+            axios.post("http://127.0.0.1:8000/api/order/",customer).then(res=>{
+                console.log(res);
+            })
+    //         ,{
+    //             pending: 'Purchases is pending',
+    //             success: {
+    //     render(){
+    //       return 'Purchases resolved 👌'
+    //     },
+    //     onClose: () => {
+    //     window.location.href = user?'/myinsurance':"/login";
+    //   }
+    //   } ,
+    //             error: 'Purchases rejected 🤯'
+    //         }
+    //     )
     }
     const fromHandler = (e)=>{
         setCustomer(prev=>{

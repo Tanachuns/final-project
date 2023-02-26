@@ -15,62 +15,77 @@ import MyInsuranceContainer from "./components/MyInsurance/MyInsuranceContainer"
 import Auth from "./components/NotFound/Auth";
 import MyProfileContainer from "./components/MyProfile/MyProfileContainer";
 import ChangPasswordContainer from "./components/ChangePassword/ChangPasswordContainer";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
+import AgentLogin from "./components/Agent/Login/AgentLogin";
 function App() {
+  const [authUser, setAuthUser] = React.useState();
+  const [token, setTotken] = React.useState();
+  React.useEffect(() => {
+    if (document.cookie.indexOf("tip_jwt=") > 0) {
+      const token = document.cookie.slice(
+        document.cookie.indexOf("tip_jwt=") + 8
+      );
+      setAuthUser(jwt_decode(token).user);
+      setTotken(token);
+    }
+  }, []);
   return (
     <>
       <ToastContainer />
       <nav>
-        <NavbarContainer />
+        <NavbarContainer authUser={authUser} setAuthUser={setAuthUser} />
       </nav>
       <main>
         <Routes>
           <Route path="/" element={<HomeContainer />} />
-          <Route path="/purchases" element={<PurchaseContainer />} />
+          <Route
+            path="/purchases"
+            element={<PurchaseContainer user={authUser} jwt={token} />}
+          />
           <Route path="/agent" element={<AgentContainer />} />
-          {/* auth routes */}
           <Route
             path="/register"
-            element={
-              sessionStorage.getItem("user") ? <Auth /> : <RegisterContainer />
-            }
+            element={authUser ? <Auth /> : <RegisterContainer />}
           />
           <Route
             path="/login"
-            element={
-              sessionStorage.getItem("user") ? <Auth /> : <LoginContainer />
-            }
+            element={authUser ? <Auth /> : <LoginContainer />}
           />
+          {/* auth routes */}
+
           <Route
             path="/myinsurance"
             element={
-              !sessionStorage.getItem("user") ? (
+              !authUser ? (
                 <NotFound />
               ) : (
-                <MyInsuranceContainer />
+                <MyInsuranceContainer user={authUser} jwt={token} />
               )
             }
           />
           <Route
             path="/myprofile"
             element={
-              !sessionStorage.getItem("user") ? (
+              !authUser ? (
                 <NotFound />
               ) : (
-                <MyProfileContainer />
+                <MyProfileContainer user={authUser} jwt={token} />
               )
             }
           />
           <Route
             path="/password"
             element={
-              !sessionStorage.getItem("user") ? (
+              !authUser ? (
                 <NotFound />
               ) : (
-                <ChangPasswordContainer />
+                <ChangPasswordContainer user={authUser} jwt={token} />
               )
             }
           />
+          {/* Agent routes */}
+          <Route path="/agent/login" element={<AgentLogin />} />
         </Routes>
       </main>
       <footer>

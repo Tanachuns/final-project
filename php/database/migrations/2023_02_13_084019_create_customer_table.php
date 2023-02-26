@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("firstname");
             $table->string("lastname");
             $table->string("birth_date");
-            $table->string("citizenId")->unique();
+            $table->string("citizen_id")->unique();
             $table->string("email")->unique();
             $table->string("phone_number")->nullable();
             $table->string("address_houseNumber");

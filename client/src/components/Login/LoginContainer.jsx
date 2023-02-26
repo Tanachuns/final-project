@@ -9,8 +9,7 @@ const LoginContainer = (props) => {
 
    const submitHandler = () =>{
     toast.promise(
-    axios.post("http://127.0.0.1:8000/api/auth/login/",data).then(res=>{
-            console.log(res)
+    axios.post("http://127.0.0.1:8000/api/auth/login",data).then(res=>{
             document.cookie = `tip_jwt=${res.data.access_token};max-age=${res.data.expires_in}`
         }),
         {
@@ -24,7 +23,7 @@ const LoginContainer = (props) => {
           return 'Login resolved 👌'
         },
         onClose: () => {
-        // window.location.href = '/';
+        window.location.href = '/';
       }
       } 
         ,

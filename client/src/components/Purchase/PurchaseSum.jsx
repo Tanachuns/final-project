@@ -46,7 +46,7 @@ const PurchaseTable = (props) => {
             </tr>
              <tr >
                 <th>Citizen ID</th>
-                <td>{props.data.citizenId}</td>
+                <td>{props.data.citizen_id}</td>
             </tr>
              <tr >
                 <th>Email</th>

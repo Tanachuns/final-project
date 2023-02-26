@@ -16,15 +16,17 @@ const RegisterContainer = (props) => {
     }
 
     const submitHandler = () =>{
-        toast.promise(
-    axios.post("http://127.0.0.1:8000/api/register/",data).then(res=>{
-        }),
-    {
-      pending: 'Register is pending',
-      success: 'Register resolved,Check Your Email 👌',
-      error: 'Register rejected 🤯'
-    }
-)
+        // toast.promise(
+    axios.post("http://127.0.0.1:8000/api/auth/register/",data).then(res=>{
+        console.log(res);
+        })
+        // ,
+//     {
+//       pending: 'Register is pending',
+//       success: 'Register resolved,Check Your Email 👌',
+//       error: 'Register rejected 🤯'
+//     }
+// )
         
     }
     console.log(data);
@@ -56,8 +58,8 @@ const RegisterContainer = (props) => {
             <label for="birth_date">BirthDate</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="citizenId" type="text" placeholder="Citizen ID" name="citizenId" required  onChange={(e)=>changeHandler(e)}/>
-            <label for="citizenId">Citizen ID</label>
+            <input className="form-control" id="citizen_id" type="text" placeholder="Citizen ID" name="citizen_id" required  onChange={(e)=>changeHandler(e)}/>
+            <label for="citizen_id">Citizen ID</label>
         </div>
         <div className="form-floating mb-3">
             <input className="form-control" id="email" type="text" placeholder="Email" name="email"  required onChange={(e)=>changeHandler(e)} />
@@ -69,7 +71,7 @@ const RegisterContainer = (props) => {
         </div>
        <h3>Address</h3>
         <div className="form-floating mb-3">
-            <input className="form-control" id="houseNumber" type="text" placeholder="House Number"name="address_houseNumber" required onChange={(e)=>changeHandler(e)}/>
+            <input className="form-control" id="houseNumber" type="text" placeholder="House Number"name="address_house_number" required onChange={(e)=>changeHandler(e)}/>
             <label for="houseNumber">House Number</label>
         </div>
         <div className="form-floating mb-3">

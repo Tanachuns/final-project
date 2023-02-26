@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Util;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,11 @@ Route::resource('/user',UserController::class);
 Route::resource('/plan', PlanController::class);
 Route::resource('/order',OrderController::class);
 
-Route::post('user/password',[UserController::class ,'changePw']);
+Route::post('/user/password',[UserController::class ,'changePw']);
+Route::get('/loadPdf/{id}',[Util::class ,'downloadPDF']);
+Route::get('/emailPdf/{id}',[Util::class ,'emailPDF']);
+
+
 
 
 

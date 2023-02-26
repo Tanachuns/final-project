@@ -60,8 +60,8 @@ const PurchaseForm = (props) => {
             <label for="birth_date">BirthDate</label>
         </div>
         <div className="form-floating mb-3">
-            <input className="form-control" id="citizenId" type="text" placeholder="Citizen ID" name="citizenId" defaultValue={props.data.citizenId} required onChange={(e)=>props.fromHandler(e)} />
-            <label for="citizenId">Citizen ID</label>
+            <input className="form-control" id="citizen_id" type="text" placeholder="Citizen ID" name="citizen_id" defaultValue={props.data.citizen_id} required onChange={(e)=>props.fromHandler(e)} />
+            <label for="citizen_id">Citizen ID</label>
         </div>
         <div className="form-floating mb-3">
             <input className="form-control" id="email" type="text" placeholder="Email" name="email" defaultValue={props.data.email} required onChange={(e)=>props.fromHandler(e)} />
@@ -82,7 +82,7 @@ const PurchaseForm = (props) => {
 
         <h3>Address</h3>
         <div className="form-floating mb-3">
-            <input className="form-control" id="houseNumber" type="text" placeholder="House Number"name="address_houseNumber" defaultValue={props.data.address_houseNumber} required onChange={(e)=>props.fromHandler(e)} />
+            <input className="form-control" id="houseNumber" type="text" placeholder="House Number"name="address_house_number" defaultValue={props.data.address_houseNumber} required onChange={(e)=>props.fromHandler(e)} />
             <label for="houseNumber">House Number</label>
         </div>
         <div className="form-floating mb-3">
