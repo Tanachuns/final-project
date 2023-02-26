@@ -32,12 +32,32 @@ public class AuthController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public UsersEntity register(@RequestBody HashMap<String, String> data) {
-        String email = data.get("email");
-        String password = data.get("password");
+        String title = data.get("title");
+        String firstname = data.get("firstname");
+        String lastname = data.get("lastname");
+        String birth_date = data.get("birth_date");
         String citizen_id = data.get("citizen_id");
+        String email = data.get("email");
+        String phone_number = data.get("phone_number");
+        String address_house_number = data.get("address_house_number");
+        String address_moo = data.get("address_moo");
+        String address_village = data.get("address_village");
+        String address_soi = data.get("address_soi");
+        String address_road = data.get("address_road");
+        String address_amphur = data.get("address_amphur");
+        String address_tumbon = data.get("address_tumbon");
+        String address_province = data.get("address_province");
+        String address_zipcode = data.get("address_zipcode");
+        String password = data.get("password");
+        String license_number = data.get("license_number");
+        String license_exp_date = data.get("license_exp_date");
+        String type = data.get("type");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
-        UsersEntity user = new UsersEntity(citizen_id, email, hashedPassword);
+        UsersEntity user = new UsersEntity(
+                title, firstname, lastname, birth_date, citizen_id, email, phone_number, address_house_number,
+                address_moo, address_village, address_soi, address_road, address_amphur, address_tumbon,
+                address_province, address_zipcode, hashedPassword, license_number, license_exp_date, type);
         userRepository.save(user);
         return user;
     }

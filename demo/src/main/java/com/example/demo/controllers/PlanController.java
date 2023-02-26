@@ -46,7 +46,7 @@ public class PlanController {
     }
 
     @RequestMapping(value = "/plan", method = RequestMethod.POST)
-    public ResponseEntity<Object> postAgent(
+    public ResponseEntity<Object> postOrder(
             @RequestBody HashMap<String, String> data) {
         try {
             PlanEntity plan = new PlanEntity(data.get("name"), data.get("desc"), Integer.parseInt(
@@ -59,7 +59,7 @@ public class PlanController {
     }
 
     @RequestMapping(value = "/plan/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> putAgent(
+    public ResponseEntity<Object> putOrder(
             @RequestBody HashMap<String, String> data,
             @PathVariable("id") Integer id) {
         try {
@@ -85,7 +85,7 @@ public class PlanController {
     }
 
     @RequestMapping(value = "/plan/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteAgent(@PathVariable("id") Integer id) {
+    public ResponseEntity<Object> deleteOrder(@PathVariable("id") Integer id) {
 
         try {
             Optional<PlanEntity> opt = planRepository.findById(id);

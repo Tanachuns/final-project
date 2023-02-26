@@ -24,7 +24,7 @@ class Orders extends Model
         "citizen_id",
         "email",
         "phone_number",
-        "address_houseNumber",
+        "address_house_number",
         "address_moo",
         "address_village",
         "address_soi",
