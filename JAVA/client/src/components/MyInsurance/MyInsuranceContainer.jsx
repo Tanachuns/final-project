@@ -2,6 +2,7 @@ import axios from "axios"
 import React from 'react';
 
 const MyInsuranceContainer = (props) => {
+    const [filter,setFilter] = React.useState("")
     const [insurance,setInsurance] = React.useState([])
      const user = props.user
     React.useEffect(()=>{
@@ -16,7 +17,16 @@ const MyInsuranceContainer = (props) => {
 
     console.log(insurance);
 
-const ins = insurance.map((item)=>{
+const ins = insurance.filter((item)=>{
+      if(filter!==""&&item.firstname){
+        return item.firstname.toLowerCase().includes(filter.toLowerCase())
+      }
+      else {
+        return item
+      }
+       
+      }
+    ).map((item)=>{
       return (<tr>
       <td>{item.agent.firstname}</td>
       <td>{item.firstname}</td>
@@ -33,6 +43,7 @@ const ins = insurance.map((item)=>{
     return ( <>
    <div className="container py-5">
     <h1>My Insurances</h1>
+      <input type="text" name="search" id="search"  onChange={(e)=>setFilter(e.target.value)}/>
     <table className="table ">
     <thead>
         <tr>

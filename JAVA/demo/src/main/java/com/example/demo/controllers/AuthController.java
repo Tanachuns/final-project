@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.UsersEntity;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.EmailService;
 import com.example.demo.service.JwtService;
 
 @RestController
@@ -24,7 +25,8 @@ import com.example.demo.service.JwtService;
 public class AuthController {
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    private EmailService emailService;
     private final JwtService jwtService;
 
     public AuthController(JwtService jwtService) {
@@ -63,6 +65,7 @@ public class AuthController {
                 address_province, address_zipcode, hashedPassword, license_number, license_exp_date, type,
                 uuid.toString());
         userRepository.save(user);
+        emailService.sendEmail(user.getEmail(), "TIP", "Your password is " + password);
         return user;
     }
 
