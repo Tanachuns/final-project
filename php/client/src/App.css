@@ -1,0 +1,60 @@
+.bg-blue {
+    background: #2827ec;
+}
+
+.bg-red{
+    background: #e9483f;
+}
+
+.bg-gray{
+    background: #f4f4f4;
+}
+
+
+
+.text-blue{
+    color: #2827ec;
+}
+.text-red{
+    color: #e9483f;
+}
+
+.text-gray{
+    color: #f4f4f4;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.home-container>*{
+    margin: 3em 0 3em 0 ;
+}
+
+.home-partners img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.home-partners img:hover {
+    transform: scale(1.2);
+}
+
+a{
+    color: white;
+}
+a:hover{
+    color: #e9483f;
+}
+
+main{
+    min-height: 100vh;
+    background: #f4f4f4;
+}
