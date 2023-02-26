@@ -24,7 +24,7 @@ import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.UserRepository;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class OrderController {
     @Autowired
     private OrderRepository orderRepository;

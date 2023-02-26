@@ -13,7 +13,7 @@ const MyProfileContainer = (props) => {
             console.log(res);
             setData(res.data)
         })
-    },[props.jwt, user.id])
+    },[])
     const changeHandler=(e)=>{
         setData(prev=>{
             return {

@@ -19,7 +19,7 @@ import com.example.demo.entities.UsersEntity;
 import com.example.demo.repository.UserRepository;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     UserRepository userRepository;

@@ -20,7 +20,7 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.JwtService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AuthController {
     @Autowired
     UserRepository userRepository;

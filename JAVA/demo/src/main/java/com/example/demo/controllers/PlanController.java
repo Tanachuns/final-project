@@ -18,7 +18,7 @@ import com.example.demo.entities.PlanEntity;
 import com.example.demo.repository.PlanRepository;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class PlanController {
 
     @Autowired

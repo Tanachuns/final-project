@@ -11,7 +11,7 @@ const MyInsuranceContainer = (props) => {
             setInsurance(res.data)
             console.log(res);
         })
-    },[props.jwt,user.id])
+    },[])
 
 
     console.log(insurance);

@@ -25,7 +25,6 @@ function App() {
       setTotken(token);
     }
   }, []);
-  console.log(token);
   return (
     <>
       <ToastContainer />
@@ -38,7 +37,7 @@ function App() {
             path="/"
             element={
               authUser ? (
-                <MyProfileContainer user={authUser} jwt={token} />
+                <PurchaseContainer user={authUser} jwt={token} />
               ) : (
                 <LoginContainer />
               )

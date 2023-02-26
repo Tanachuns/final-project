@@ -2,9 +2,7 @@ import React from 'react';
 // import axios from "axios";
 const PurchaseTable = (props) => {
 
-    // React.useEffect(()=>{
 
-    // },[])
     console.log(props.data);
     const beneficiaryTable = (<>
     <h3>Beneficiary Details</h3>

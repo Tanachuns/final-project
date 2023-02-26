@@ -51,7 +51,7 @@ const PurchaseContainer = (props) => {
         axios.get("http://localhost:8080/plan/1").then(res=>{
             setPlan(res.data)
         })
-    },[props.user, user])
+    },[])
 
     const setPlanHandler = (plan)=>{
         axios.get("http://localhost:8080/plan/"+plan).then(res=>{
