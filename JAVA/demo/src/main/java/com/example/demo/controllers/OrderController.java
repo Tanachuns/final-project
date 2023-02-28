@@ -1,19 +1,25 @@
 package com.example.demo.controllers;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.OrderEntity;
@@ -22,6 +28,7 @@ import com.example.demo.entities.UsersEntity;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.PlanRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.PdfGeneratorService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -122,4 +129,23 @@ public class OrderController {
             return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    private final PdfGeneratorService pdfGeneratorService;
+
+    public OrderController(PdfGeneratorService pdfGeneratorService) {
+        this.pdfGeneratorService = pdfGeneratorService;
+    }
+
+    @GetMapping("/report/{id}")
+    public void generatePDF(HttpServletResponse response, @PathVariable Integer id) throws IOException {
+        response.setContentType("application/pdf");
+        // DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+        // String currentDateTime = dateFormat.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Insurance-Policy(A4).pdf";
+        response.setHeader(headerKey, headerValue);
+        OrderEntity order = orderRepository.findById(id).get();
+        this.pdfGeneratorService.export(response, order);
+    }
+
 }

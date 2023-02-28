@@ -36,7 +36,7 @@ const ins = insurance.filter((item)=>{
       <td>{item.plan.price} THB/Month</td>
       <td>{item.beneficiary_relation||"-"}</td>
       <td>{item.beneficiary_firstname||"-"}</td>
-      <td><a href={"http://127.0.0.1:8000/api/loadPdf/"+item.id}><img src="/images/pdf.png" alt="download pdf" height={25} /></a></td>
+      <td><a href={"http://localhost:8080/report/"+item.id}><img src="/images/pdf.png" alt="download pdf" height={25} /></a></td>
     </tr>)
     })
 

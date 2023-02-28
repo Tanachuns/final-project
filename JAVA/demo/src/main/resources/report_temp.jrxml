@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f6b9ca1-aa92-4b05-9d29-f70fd38035b4">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="firstname" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[Select * from orders]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="title"/>
+		<property name="com.jaspersoft.studio.field.label" value="title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="firstname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="firstname"/>
+		<property name="com.jaspersoft.studio.field.label" value="firstname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="lastname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="lastname"/>
+		<property name="com.jaspersoft.studio.field.label" value="lastname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="birth_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="birth_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="birth_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="citizen_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="citizen_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="citizen_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="phone_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="phone_number"/>
+		<property name="com.jaspersoft.studio.field.label" value="phone_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_house_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_house_number"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_house_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_moo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_moo"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_moo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_village" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_village"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_village"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_soi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_soi"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_soi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_road" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_road"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_road"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_amphur" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_amphur"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_amphur"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_tumbon" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_tumbon"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_tumbon"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_province" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_province"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_province"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="address_zipcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address_zipcode"/>
+		<property name="com.jaspersoft.studio.field.label" value="address_zipcode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="health_condition" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="health_condition"/>
+		<property name="com.jaspersoft.studio.field.label" value="health_condition"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="plan_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="plan_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="plan_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="cover_start_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="cover_start_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="cover_start_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="cover_end_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="cover_end_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="cover_end_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="beneficiary_firstname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="beneficiary_firstname"/>
+		<property name="com.jaspersoft.studio.field.label" value="beneficiary_firstname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="beneficiary_lastname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="beneficiary_lastname"/>
+		<property name="com.jaspersoft.studio.field.label" value="beneficiary_lastname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="beneficiary_relation" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="beneficiary_relation"/>
+		<property name="com.jaspersoft.studio.field.label" value="beneficiary_relation"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="beneficiary_title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="beneficiary_title"/>
+		<property name="com.jaspersoft.studio.field.label" value="beneficiary_title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="agent_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="agent_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="agent_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="created_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="created_at"/>
+		<property name="com.jaspersoft.studio.field.label" value="created_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="updated_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="updated_at"/>
+		<property name="com.jaspersoft.studio.field.label" value="updated_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="101" y="52" width="299" height="48" uuid="a6e7e275-d308-4bf5-98d4-b79d76f99282"/>
+				<textFieldExpression><![CDATA[$P{firstname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
