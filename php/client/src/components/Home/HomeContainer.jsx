@@ -15,7 +15,7 @@ const HomeContainer = () => {
   const plans = plan.map((item,key)=>{
     return (<div class="col-md-4 mb-4">
       <div class="card border-0 shadow">
-        <div class="card-body text-center">
+        <div class="card-body text-center" style={{maxHeight:"300px"}}>
           <h3 class="card-title">{item.name}</h3>
           <p class="card-text">{item.description}</p>
           <h4 class="mb-4">{item.price} THB/Month</h4>
